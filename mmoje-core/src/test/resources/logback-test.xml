@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" debug="true">
+
+    <contextName>lily</contextName>
+
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d [%t] %-5p %c - %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="jdbc.sqlonly" level="OFF" />
+    <logger name="jdbc.sqltiming" level="info" />
+    <logger name="jdbc.audit" level="OFF" />
+    <logger name="jdbc.resultset" level="OFF" />
+    <logger name="jdbc.connection" level="OFF" />
+
+
+    <logger name="org.hibernate.SQL" level="info" />
+    <!--<logger name="org.springframework.security" level="debug" />-->
+
+    <logger name="org.hibernate.type" level="info" />
+    <logger name="org.hibernate.engine.TwoPhaseLoad" level="INFO" />
+    <logger name="org.hibernate.loader.Loader" level="INFO" />
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

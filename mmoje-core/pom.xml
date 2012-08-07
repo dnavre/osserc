@@ -18,6 +18,12 @@
             <version>3.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>1.8</version>
+        </dependency>
+
 
         <!-- Persistence related stuff -->
         <dependency>
@@ -49,7 +55,7 @@
         <!-- Logging -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
+            <artifactId>logback-classic</artifactId>
             <version>1.0.6</version>
         </dependency>
 
