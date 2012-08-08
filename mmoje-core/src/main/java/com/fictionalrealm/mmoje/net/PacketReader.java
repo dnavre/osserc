@@ -23,7 +23,7 @@ public class PacketReader {
 
     @Inject
     public PacketReader() {
-        dataPollerThread = new Thread(new DataPoller(), "PacketReader");
+        dataPollerThread = new Thread(new DataPoller(), "packetReader");
     }
 
     public void startPolling() throws IOException {
@@ -47,7 +47,8 @@ public class PacketReader {
                 SocketChannel client = null;
                 while (true) {
 
-                    selector.select();
+                    // after 10ms do a new select so new connections get accounted for
+                    selector.select(10);
 
                     Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
                     while (iter.hasNext()) {

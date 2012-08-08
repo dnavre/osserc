@@ -28,6 +28,8 @@ public class Listener {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
+    private final Thread accepterThread = new Thread(new Accepter(), "listener");
+
     private PacketReader reader;
 
     private ServerSocketChannel socket;
@@ -58,29 +60,7 @@ public class Listener {
     }
 
     public void startListening() {
-        try {
-            while (true) {
-                selector.select();
-                Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
-
-                while (iter.hasNext()) {
-                    SocketChannel client;
-                    SelectionKey key = iter.next();
-                    iter.remove();
-
-                    client = ((ServerSocketChannel) key.channel()).accept();
-                    client.configureBlocking(false);
-                    reader.register(client);
-
-                    InetAddress remoteAddr = client.socket().getInetAddress();
-
-                    logger.info("Connected client - " + remoteAddr.getHostName());
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+        accepterThread.start();
     }
 
     public void stopListener() {
@@ -95,6 +75,36 @@ public class Listener {
             reader.stop();
         } catch (IOException e) {
             logger.error("Unexpected error!", e);
+        }
+    }
+
+    private class Accepter implements Runnable {
+
+        @Override
+        public void run() {
+            try {
+                while (true) {
+                    selector.select();
+                    Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
+
+                    while (iter.hasNext()) {
+                        SocketChannel client;
+                        SelectionKey key = iter.next();
+                        iter.remove();
+
+                        client = ((ServerSocketChannel) key.channel()).accept();
+                        client.configureBlocking(false);
+                        reader.register(client);
+
+                        InetAddress remoteAddr = client.socket().getInetAddress();
+
+                        logger.info("Connected client - " + remoteAddr.getHostAddress());
+                        break;
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
         }
     }
 }
