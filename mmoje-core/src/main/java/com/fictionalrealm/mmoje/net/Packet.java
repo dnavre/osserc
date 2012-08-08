@@ -1,5 +1,8 @@
 package com.fictionalrealm.mmoje.net;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Yervand.Aghababyan
@@ -7,5 +10,6 @@ package com.fictionalrealm.mmoje.net;
  * Time: 2:06 AM
  * To change this template use File | Settings | File Templates.
  */
-public class PAcket {
+@Retention(RetentionPolicy.RUNTIME)
+@interface Packet {
 }
