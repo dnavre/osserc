@@ -1,5 +1,8 @@
 package com.fictionalrealm.mmoje.net;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Yervand.Aghababyan
@@ -7,5 +10,11 @@ package com.fictionalrealm.mmoje.net;
  * Time: 2:05 AM
  * To change this template use File | Settings | File Templates.
  */
+@Singleton
 public class PacketMap {
+
+    @Inject
+    public PacketMap() {
+
+    }
 }
