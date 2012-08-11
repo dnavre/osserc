@@ -17,4 +17,8 @@ public class Connection {
     public void sendData(byte[] data) {
 
     }
+
+    public void addReceivedData(byte[] data) {
+
+    }
 }
