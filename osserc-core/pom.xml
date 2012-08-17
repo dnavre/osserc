@@ -24,6 +24,12 @@
             <version>1.8</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.8</version>
+        </dependency>
+
 
         <!-- Persistence related stuff -->
         <dependency>
