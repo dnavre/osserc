@@ -1,0 +1,17 @@
+package osserc.cp;
+
+option java_package = "com.fictionalrealm.osserc.protocol.cp";
+option java_outer_classname = "ClientProtocol";
+option java_multiple_files = true;
+option optimize_for = SPEED;
+
+// Data types
+import "DataTypes.proto";
+
+// Client packets
+
+message InitUser {
+    required string username = 1;
+    required string password = 2;
+    optional string token = 3;
+}

@@ -1,13 +1,14 @@
 package com.fictionalrealm.osserc.core;
 
-import com.fictionalrealm.osserc.net.Listener;
+import com.fictionalrealm.osserc.net.lsnr.Listener;
+import com.fictionalrealm.osserc.net.PacketMap;
 import com.google.inject.Singleton;
 import org.apache.commons.configuration.ConfigurationException;
+import org.jboss.netty.channel.ChannelException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
-import java.io.IOException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,23 +24,25 @@ public class Application {
 
     private final Listener listener;
     private final ApplicationConfig config;
+    private final PacketMap packetMap;
 
     @Inject
-    public Application(Listener lsnr, ApplicationConfig config) {
+    public Application(Listener lsnr, ApplicationConfig config, PacketMap packetMap) {
         this.listener = lsnr;
         this.config = config;
+        this.packetMap = packetMap;
     }
 
     public void start() {
         try {
             logger.info("Starting...");
             config.initialize();
+            packetMap.initialize(config);
 
             listener.bind(config.getListenerHost(), config.getListenerPort());
-            listener.startListening();
         } catch (ConfigurationException e) {
             logger.error("Couldn't load config! Quitting...", e.getMessage());
-        } catch (IOException e) {
+        } catch (ChannelException e) {
             logger.error("Couldn't listen to port! Quitting...", e.getMessage());
         }
     }

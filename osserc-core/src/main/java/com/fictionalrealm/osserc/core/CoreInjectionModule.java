@@ -1,4 +1,4 @@
-package com.fictionalrealm.osserc;
+package com.fictionalrealm.osserc.core;
 
 import com.google.inject.AbstractModule;
 

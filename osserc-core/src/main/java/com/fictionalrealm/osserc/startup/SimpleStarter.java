@@ -1,6 +1,6 @@
 package com.fictionalrealm.osserc.startup;
 
-import com.fictionalrealm.osserc.CoreInjectionModule;
+import com.fictionalrealm.osserc.core.CoreInjectionModule;
 import com.fictionalrealm.osserc.core.Application;
 import com.google.inject.Guice;
 import com.google.inject.Injector;

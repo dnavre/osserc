@@ -1,0 +1,17 @@
+package osserc.sp;
+
+option java_package = "com.fictionalrealm.osserc.protocol.sp";
+option java_outer_classname = "ServerProtocol";
+option java_multiple_files = true;
+option optimize_for = SPEED;
+
+// Data types
+import "DataTypes.proto";
+
+// Server packets
+
+message WelcomeSP {
+    required int32 version = 1;
+    required osserc.dt.ServerStatus serverStatus = 2;
+    optional string msg = 3;
+}

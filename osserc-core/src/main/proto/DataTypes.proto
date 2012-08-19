@@ -1,0 +1,13 @@
+package osserc.dt;
+
+option java_package = "com.fictionalrealm.osserc.protocol.datatypes";
+option java_multiple_files = true;
+option optimize_for = SPEED;
+
+enum ServerStatus {
+    ONLINE = 0;
+    OFFLINE = 1;
+    AUTH_SERVER_OFFLINE = 2;
+    MAINTENANCE = 3;
+    MAP_SERVER_OFFLINE = 4;
+}

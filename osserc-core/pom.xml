@@ -8,6 +8,44 @@
     <artifactId>osserc-core</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
+    <properties>
+        <protobuf.generated>src/main/java</protobuf.generated>
+        <!--<proto.files></proto.files>-->
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>compile-protoc</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <tasks>
+                                <mkdir dir="${protobuf.generated}"/>
+                                <path id="proto.path">
+                                    <fileset dir="src/main/proto">
+                                        <include name="**/*.proto"/>
+                                    </fileset>
+                                </path>
+                                <pathconvert pathsep=" " property="proto.files" refid="proto.path"/>
+                                <echo>${proto.files}</echo>
+                                <exec executable="protoc" failonerror="true" >
+                                    <arg value="--java_out=${protobuf.generated}"/>
+                                    <arg value="-I${project.basedir}/src/main/proto"/>
+                                    <arg line="${proto.files}"/>
+                                </exec>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
 
@@ -30,6 +68,11 @@
             <version>0.9.8</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.jboss.netty</groupId>
+            <artifactId>netty</artifactId>
+            <version>3.2.7.Final</version>
+        </dependency>
 
         <!-- Persistence related stuff -->
         <dependency>
@@ -47,15 +90,9 @@
 
         <!-- Protocol related -->
         <dependency>
-            <groupId>org.apache.thrift</groupId>
-            <artifactId>libthrift</artifactId>
-            <version>0.8.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>2.4.1</version>
         </dependency>
 
         <!-- Logging -->

@@ -6,6 +6,9 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -30,7 +33,7 @@ public class ApplicationConfig {
 
         try {
             PropertiesConfiguration defaults = new PropertiesConfiguration("config.defaults.properties");
-            PropertiesConfiguration customization = new PropertiesConfiguration("mmoje_config.properties");
+            PropertiesConfiguration customization = new PropertiesConfiguration("osserc_config.properties");
 
             config.addConfiguration(defaults);
             config.addConfiguration(customization);
@@ -46,5 +49,19 @@ public class ApplicationConfig {
 
     public String getListenerHost() {
         return config.getString("lsnr.host");
+    }
+
+    public List<String> getAnnotationScanPaths() {
+        List<String> paths = new ArrayList<String>();
+
+        paths.add(config.getString("osserc.annotations.scan"));
+
+        for (Object o: config.getList("annotations.scan")) {
+            if(o != null && o instanceof String) {
+                paths.add((String)o);
+            }
+        }
+
+        return paths;
     }
 }

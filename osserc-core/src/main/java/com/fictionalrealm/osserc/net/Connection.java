@@ -8,7 +8,6 @@ import java.nio.ByteBuffer;
  * Time: 2:22 AM
  */
 public class Connection {
-    private final ByteBuffer buffer = ByteBuffer.allocate(64 * 1024);
 
     public Connection() {
 
