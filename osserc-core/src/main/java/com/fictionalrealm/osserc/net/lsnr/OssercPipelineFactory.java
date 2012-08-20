@@ -9,6 +9,8 @@ import org.jboss.netty.handler.codec.protobuf.ProtobufEncoder;
 import org.jboss.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import org.jboss.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 
+import javax.inject.Inject;
+
 /**
  * User: Yervand.Aghababyan
  * Date: 8/18/12
@@ -16,7 +18,11 @@ import org.jboss.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepend
  */
 public class OssercPipelineFactory implements ChannelPipelineFactory {
 
-    public OssercPipelineFactory() {
+    private final ConnectionHandler connectionHandler;
+
+    @Inject
+    public OssercPipelineFactory(ConnectionHandler connectionHandler) {
+        this.connectionHandler = connectionHandler;
 
     }
 
@@ -29,7 +35,7 @@ public class OssercPipelineFactory implements ChannelPipelineFactory {
         p.addLast("frameEncoder", new ProtobufVarint32LengthFieldPrepender());
         p.addLast("protobufEncoder", new ProtobufEncoder());
 
-        p.addLast("handler", new ConnectionHandler());
+        p.addLast("handler", connectionHandler);
         return p;
     }
 }

@@ -23,19 +23,19 @@ public class Listener {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private ServerBootstrap bs;
+    private final ServerBootstrap bs;
+    private final OssercPipelineFactory pipelineFactory;
 
     @Inject
-    public Listener() {
-
+    public Listener(OssercPipelineFactory pipelineFactory) {
+        bs = new ServerBootstrap(new NioServerSocketChannelFactory(Executors.newCachedThreadPool(), Executors.newCachedThreadPool()));
+        this.pipelineFactory = pipelineFactory;
     }
 
     public void bind(String listenerHost, int listenerPort) {
         InetSocketAddress addr = new InetSocketAddress(listenerHost, listenerPort);
 
-        bs = new ServerBootstrap(new NioServerSocketChannelFactory(Executors.newCachedThreadPool(), Executors.newCachedThreadPool()));
-
-        bs.setPipelineFactory(new OssercPipelineFactory());
+        bs.setPipelineFactory(pipelineFactory);
 
         bs.bind(addr);
 

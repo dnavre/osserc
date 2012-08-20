@@ -1,10 +1,13 @@
 package com.fictionalrealm.osserc.net.lsnr;
 
+import com.fictionalrealm.osserc.net.ConnectionMap;
 import com.fictionalrealm.osserc.protocol.datatypes.ServerStatus;
 import com.fictionalrealm.osserc.protocol.sp.WelcomeSP;
 import org.jboss.netty.channel.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.inject.Inject;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,7 +18,14 @@ import org.slf4j.LoggerFactory;
  */
 public class ConnectionHandler extends SimpleChannelUpstreamHandler {
 
-    private Logger logger = LoggerFactory.getLogger("listener");
+    private final Logger logger = LoggerFactory.getLogger("listener");
+
+    public final ConnectionMap connectionMap;
+
+    @Inject
+    public ConnectionHandler(ConnectionMap connectionMap) {
+        this.connectionMap = connectionMap;
+    }
 
     @Override
     public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
@@ -27,12 +37,7 @@ public class ConnectionHandler extends SimpleChannelUpstreamHandler {
     public void channelConnected(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {
         logger.info("Client " + ctx.getChannel().getRemoteAddress() + " connected");
 
-        WelcomeSP welcomeSP = WelcomeSP.newBuilder()
-                .setVersion(1)
-                .setServerStatus(ServerStatus.ONLINE)
-                .build();
-
-        ctx.getChannel().write(welcomeSP);
+        connectionMap.addConnection(ctx);
 
         ctx.sendUpstream(e);
     }

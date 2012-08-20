@@ -1,5 +1,7 @@
 package com.fictionalrealm.osserc.net;
 
+import org.jboss.netty.channel.ChannelHandlerContext;
+
 import java.nio.ByteBuffer;
 
 /**
@@ -9,7 +11,7 @@ import java.nio.ByteBuffer;
  */
 public class Connection {
 
-    public Connection() {
+    public Connection(ChannelHandlerContext ctx) {
 
     }
 
