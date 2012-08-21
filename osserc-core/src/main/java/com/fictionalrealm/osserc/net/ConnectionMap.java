@@ -18,7 +18,7 @@ public class ConnectionMap {
 
     private final int CONNECTION_MNGR_THREAD_NUM = 3;
 
-    private final ConcurrentMap<String, Connection> connections = new ConcurrentHashMap<String, Connection>();
+    private final ConcurrentMap<Long, Connection> connections = new ConcurrentHashMap<Long, Connection>();
     private final ConnectionIdGenerator idGenerator;
     private final ScheduledExecutorService threadPool = new ScheduledThreadPoolExecutor(CONNECTION_MNGR_THREAD_NUM);
 
@@ -41,6 +41,11 @@ public class ConnectionMap {
 
         @Override
         public void run() {
+
+            long id = idGenerator.getNewId();
+            Connection c = new Connection(id, ctx);
+
+            connections.put(id, c);
 
             WelcomeSP welcomeSP = WelcomeSP.newBuilder()
                     .setVersion(1)

@@ -11,8 +11,12 @@ import java.nio.ByteBuffer;
  */
 public class Connection {
 
-    public Connection(ChannelHandlerContext ctx) {
+    private final long connectionId;
+    private final ChannelHandlerContext ctx;
 
+    public Connection(long connectionId, ChannelHandlerContext ctx) {
+        this.connectionId = connectionId;
+        this.ctx = ctx;
     }
 
     public void sendData(byte[] data) {
