@@ -11,3 +11,11 @@ enum ServerStatus {
     MAINTENANCE = 3;
     MAP_SERVER_OFFLINE = 4;
 }
+
+
+enum DisconnectionReason {
+    SERVER_SHUTDOWN = 0;
+    WRONG_CREDENTIALS = 1;
+    TIMEOUT = 2;
+    OTHER=3;
+}

@@ -4,6 +4,7 @@ import com.fictionalrealm.osserc.protocol.datatypes.ServerStatus;
 import com.fictionalrealm.osserc.protocol.sp.WelcomeSP;
 import org.jboss.netty.channel.ChannelHandlerContext;
 
+import javax.annotation.concurrent.ThreadSafe;
 import javax.inject.Inject;
 import java.util.concurrent.*;
 
@@ -14,9 +15,10 @@ import java.util.concurrent.*;
  * Time: 12:28 AM
  * To change this template use File | Settings | File Templates.
  */
+@ThreadSafe
 public class ConnectionMap {
 
-    private final int CONNECTION_MNGR_THREAD_NUM = 3;
+    private static final int CONNECTION_MNGR_THREAD_NUM = 3;
 
     private final ConcurrentMap<Long, Connection> connections = new ConcurrentHashMap<Long, Connection>();
     private final ConnectionIdGenerator idGenerator;
@@ -29,6 +31,14 @@ public class ConnectionMap {
 
     public void addConnection(ChannelHandlerContext ctx) {
         threadPool.schedule(new NewConnectionInitializer(ctx), 0, TimeUnit.MILLISECONDS);
+    }
+
+    public void removeFromMap(Connection c) {
+        removeFromMap(c.getId());
+    }
+
+    public void removeFromMap(long connectionId) {
+        connections.remove(connectionId);
     }
 
     private class NewConnectionInitializer implements Runnable {
@@ -47,12 +57,7 @@ public class ConnectionMap {
 
             connections.put(id, c);
 
-            WelcomeSP welcomeSP = WelcomeSP.newBuilder()
-                    .setVersion(1)
-                    .setServerStatus(ServerStatus.ONLINE)
-                    .build();
-
-            ctx.getChannel().write(welcomeSP);
+            c.sendWelcome();
         }
     }
 }

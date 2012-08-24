@@ -13,6 +13,11 @@ public final class ServerProtocol {
   static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_osserc_sp_WelcomeSP_fieldAccessorTable;
+  static com.google.protobuf.Descriptors.Descriptor
+    internal_static_osserc_sp_DisconnectionNoticeSP_descriptor;
+  static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_osserc_sp_DisconnectionNoticeSP_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -25,9 +30,11 @@ public final class ServerProtocol {
       "\n\024ServerProtocol.proto\022\tosserc.sp\032\017DataT" +
       "ypes.proto\"X\n\tWelcomeSP\022\017\n\007version\030\001 \002(\005" +
       "\022-\n\014serverStatus\030\002 \002(\0162\027.osserc.dt.Serve" +
-      "rStatus\022\013\n\003msg\030\003 \001(\tB;\n%com.fictionalrea" +
-      "lm.osserc.protocol.spB\016ServerProtocolH\001P" +
-      "\001"
+      "rStatus\022\013\n\003msg\030\003 \001(\t\"T\n\025DisconnectionNot" +
+      "iceSP\022.\n\006reason\030\001 \002(\0162\036.osserc.dt.Discon" +
+      "nectionReason\022\013\n\003msg\030\002 \001(\tB;\n%com.fictio" +
+      "nalrealm.osserc.protocol.spB\016ServerProto" +
+      "colH\001P\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -42,6 +49,14 @@ public final class ServerProtocol {
               new java.lang.String[] { "Version", "ServerStatus", "Msg", },
               com.fictionalrealm.osserc.protocol.sp.WelcomeSP.class,
               com.fictionalrealm.osserc.protocol.sp.WelcomeSP.Builder.class);
+          internal_static_osserc_sp_DisconnectionNoticeSP_descriptor =
+            getDescriptor().getMessageTypes().get(1);
+          internal_static_osserc_sp_DisconnectionNoticeSP_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_osserc_sp_DisconnectionNoticeSP_descriptor,
+              new java.lang.String[] { "Reason", "Msg", },
+              com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP.class,
+              com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP.Builder.class);
           return null;
         }
       };

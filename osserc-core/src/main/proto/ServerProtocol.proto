@@ -15,3 +15,8 @@ message WelcomeSP {
     required osserc.dt.ServerStatus serverStatus = 2;
     optional string msg = 3;
 }
+
+message DisconnectionNoticeSP {
+    required osserc.dt.DisconnectionReason reason = 1;
+    optional string msg = 2;
+}
