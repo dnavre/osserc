@@ -1,6 +1,6 @@
 package com.fictionalrealm.osserc.net;
 
-import com.fictionalrealm.osserc.net.Packet;
+import com.google.protobuf.GeneratedMessage;
 
 /**
  * User: dnavre
@@ -8,5 +8,5 @@ import com.fictionalrealm.osserc.net.Packet;
  * Time: 7:47 AM
  */
 public interface PacketListener {
-    public void processPacket(Packet packet);
+    public void processPacket(GeneratedMessage packet);
 }

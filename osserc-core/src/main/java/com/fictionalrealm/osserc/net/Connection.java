@@ -25,6 +25,7 @@ public class Connection {
     }
 
     public void write(GeneratedMessage m) {
+        if(ctx.getChannel().isWritable())
         ctx.getChannel().write(m);
     }
 
@@ -49,6 +50,8 @@ public class Connection {
                     .build();
 
             write(noticeSP);
+
+            ctx.getChannel().close();
         }
     }
 

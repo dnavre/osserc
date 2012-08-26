@@ -36,12 +36,9 @@ public class Application {
     public void start() {
         try {
             logger.info("Starting...");
-            config.initialize();
             packetMap.initialize(config);
 
             listener.bind(config.getListenerHost(), config.getListenerPort());
-        } catch (ConfigurationException e) {
-            logger.error("Couldn't load config! Quitting...", e.getMessage());
         } catch (ChannelException e) {
             logger.error("Couldn't listen to port! Quitting...", e.getMessage());
         }

@@ -2,14 +2,23 @@ package com.fictionalrealm.osserc.net;
 
 import com.fictionalrealm.osserc.*;
 import com.fictionalrealm.osserc.core.ApplicationConfig;
+import com.fictionalrealm.osserc.protocol.cp.InitUser;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.google.protobuf.GeneratedMessage;
+import com.google.protobuf.Message;
+import com.google.protobuf.MessageLite;
 import org.reflections.Reflections;
 import org.reflections.scanners.TypeAnnotationsScanner;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,24 +30,45 @@ import java.util.List;
 @Singleton
 public class PacketMap {
 
+    private final ConcurrentMap<Integer, Message> clientPackets = new ConcurrentHashMap<Integer, Message>();
+    private final ConcurrentMap<Class<?>, Integer> serverPackets = new ConcurrentHashMap<Class<?>, Integer>();
+
     @Inject
     public PacketMap() {
         // empty constructor
     }
 
     public void initialize(ApplicationConfig config) {
-        List<String> paths = config.getAnnotationScanPaths();
 
-        ConfigurationBuilder cb = new ConfigurationBuilder();
+        try{
+            for (Map.Entry<String, String> e: config.getClientPackets().entrySet()) {
+                clientPackets.put(Integer.parseInt(e.getKey()), getMessageByClassName(e.getValue()));
+            }
 
-        for (String path: paths) {
-            cb.addUrls(ClasspathHelper.forPackage(path));
+            for (Map.Entry<String, String> e: config.getClientPackets().entrySet()) {
+                serverPackets.put(getClassByName(e.getValue()), Integer.parseInt(e.getKey()));
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
+    }
 
-        cb.addScanners(new TypeAnnotationsScanner());
+    private Message getMessageByClassName(String className) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Class c = Class.forName(className);
 
-        Reflections r = new Reflections(cb);
+        Method m = c.getMethod("getDefaultInstance");
+        Message message = (Message) m.invoke(null);
 
-        r.getTypesAnnotatedWith(com.fictionalrealm.osserc.Packet.class);
+        return message;
+    }
+
+    private Class getClassByName(String className) throws ClassNotFoundException {
+        return Class.forName(className);
     }
 }

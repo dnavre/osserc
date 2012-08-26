@@ -1,8 +1,8 @@
 package com.fictionalrealm.osserc.route;
 
 import com.fictionalrealm.osserc.net.Connection;
-import com.fictionalrealm.osserc.net.Packet;
 import com.fictionalrealm.osserc.net.PacketListener;
+import com.google.protobuf.GeneratedMessage;
 
 /**
  * User: dnavre
@@ -18,7 +18,7 @@ public class Session implements PacketListener{
     }
 
     @Override
-    public void processPacket(Packet packet) {
+    public void processPacket(GeneratedMessage packet) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 }
