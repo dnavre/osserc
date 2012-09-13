@@ -10,11 +10,9 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 
 /**
- * Created with IntelliJ IDEA.
  * User: Yervand.Aghababyan
  * Date: 8/18/12
  * Time: 8:22 PM
- * To change this template use File | Settings | File Templates.
  */
 public class ConnectionHandler extends SimpleChannelUpstreamHandler {
 

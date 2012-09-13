@@ -5,6 +5,7 @@ import com.fictionalrealm.osserc.protocol.datatypes.ServerStatus;
 import com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP;
 import com.fictionalrealm.osserc.protocol.sp.WelcomeSP;
 import com.google.protobuf.GeneratedMessage;
+import com.google.protobuf.Message;
 import org.jboss.netty.channel.ChannelHandlerContext;
 
 import java.nio.ByteBuffer;
@@ -24,7 +25,7 @@ public class Connection {
         this.ctx = ctx;
     }
 
-    public void write(GeneratedMessage m) {
+    public void write(Message m) {
         if(ctx.getChannel().isWritable())
         ctx.getChannel().write(m);
     }

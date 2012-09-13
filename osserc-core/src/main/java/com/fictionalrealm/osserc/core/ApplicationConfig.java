@@ -46,7 +46,7 @@ public class ApplicationConfig {
             // loading server packet list
             String[] sFiles = config.getStringArray("packetlist.server");
             CompositeConfiguration sPackets = loadConfigFiles(sFiles);
-            serverPackets = (Map)Collections.unmodifiableMap(ConfigurationConverter.getMap(cPackets));
+            serverPackets = (Map)Collections.unmodifiableMap(ConfigurationConverter.getMap(sPackets));
 
         } catch (ConfigurationException e) {
             logger.debug("Couldn't load config! Quitting...", e);
