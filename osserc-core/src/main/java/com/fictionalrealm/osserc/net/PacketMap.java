@@ -2,6 +2,7 @@ package com.fictionalrealm.osserc.net;
 
 import com.fictionalrealm.osserc.*;
 import com.fictionalrealm.osserc.core.ApplicationConfig;
+import com.fictionalrealm.osserc.core.ApplicationManager;
 import com.fictionalrealm.osserc.protocol.cp.InitUser;
 import com.google.inject.Inject;
 import com.google.inject.Provides;
@@ -18,6 +19,8 @@ import org.reflections.Reflections;
 import org.reflections.scanners.TypeAnnotationsScanner;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Scope;
 import java.lang.reflect.InvocationTargetException;
@@ -35,12 +38,16 @@ import java.util.concurrent.ConcurrentMap;
 @Singleton
 public class PacketMap {
 
+    private final Logger logger = LoggerFactory.getLogger("packetMap");
+
     private final ConcurrentMap<Integer, Message> clientPackets = new ConcurrentHashMap<Integer, Message>();
     private final ConcurrentMap<Class<?>, Byte[]> serverPackets = new ConcurrentHashMap<Class<?>, Byte[]>();
 
+    private final ApplicationManager appManager;
+
     @Inject
-    public PacketMap() {
-        // empty constructor
+    public PacketMap(ApplicationManager appManager) {
+        this.appManager = appManager;
     }
 
     public void initialize(ApplicationConfig config) {
@@ -55,20 +62,32 @@ public class PacketMap {
                 serverPackets.put(getClassByName(e.getValue()), ArrayUtils.toObject(Hex.decodeHex(key.toCharArray())));
             }
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();  // TODO fixme
+            appManager.stop();
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();  // TODO fixme
+            appManager.stop();
         } catch (IllegalAccessException e) {
-            e.printStackTrace();  // TODO fixme
+            appManager.stop();
         } catch (InvocationTargetException e) {
-            e.printStackTrace();  // TODO fixme
+            appManager.stop();
         } catch (DecoderException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            logger.error("An unknown error occurred while loading packet list.");
+            appManager.stop();
         }
     }
 
-    private Message getMessageByClassName(String className) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Class c = Class.forName(className);
+    private Message getMessageByClassName(String className) throws InvocationTargetException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException {
+        Class c;
+
+        try {
+            c = Class.forName(className);
+        } catch (ClassNotFoundException e) {
+            logger.error("Failed to load packet:" + className + " class not found!");
+            throw e;
+        }
+
+        if(!c.isInstance(Message.class)) {
+            logger.error("Failed to load packet:" + className + " class does extend Message class!");
+        }
 
         Method m = c.getMethod("getDefaultInstance");
         Message message = (Message) m.invoke(null);
