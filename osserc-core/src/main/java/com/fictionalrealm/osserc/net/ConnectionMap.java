@@ -41,6 +41,10 @@ public class ConnectionMap {
         connections.remove(connectionId);
     }
 
+    public Connection getConnection(long id) {
+        return connections.get(id);
+    }
+
     private class NewConnectionInitializer implements Runnable {
 
         private final ChannelHandlerContext ctx;
@@ -55,6 +59,7 @@ public class ConnectionMap {
             long id = idGenerator.getNewId();
             Connection c = new Connection(id, ctx);
 
+            ctx.setAttachment(id);
             connections.put(id, c);
 
             c.sendWelcome();

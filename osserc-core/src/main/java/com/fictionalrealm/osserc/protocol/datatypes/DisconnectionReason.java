@@ -8,12 +8,14 @@ public enum DisconnectionReason
   WRONG_CREDENTIALS(1, 1),
   TIMEOUT(2, 2),
   OTHER(3, 3),
+  CONNECTION_ERROR(4, 4),
   ;
   
   public static final int SERVER_SHUTDOWN_VALUE = 0;
   public static final int WRONG_CREDENTIALS_VALUE = 1;
   public static final int TIMEOUT_VALUE = 2;
   public static final int OTHER_VALUE = 3;
+  public static final int CONNECTION_ERROR_VALUE = 4;
   
   
   public final int getNumber() { return value; }
@@ -24,6 +26,7 @@ public enum DisconnectionReason
       case 1: return WRONG_CREDENTIALS;
       case 2: return TIMEOUT;
       case 3: return OTHER;
+      case 4: return CONNECTION_ERROR;
       default: return null;
     }
   }
@@ -54,7 +57,7 @@ public enum DisconnectionReason
   }
   
   private static final DisconnectionReason[] VALUES = {
-    SERVER_SHUTDOWN, WRONG_CREDENTIALS, TIMEOUT, OTHER, 
+    SERVER_SHUTDOWN, WRONG_CREDENTIALS, TIMEOUT, OTHER, CONNECTION_ERROR, 
   };
   
   public static DisconnectionReason valueOf(

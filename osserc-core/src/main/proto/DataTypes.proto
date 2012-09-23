@@ -18,4 +18,5 @@ enum DisconnectionReason {
     WRONG_CREDENTIALS = 1;
     TIMEOUT = 2;
     OTHER=3;
+    CONNECTION_ERROR=4;
 }

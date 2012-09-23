@@ -26,12 +26,12 @@
                                 <mkdir dir="${protobuf.generated}"/>
                                 <path id="proto.path">
                                     <fileset dir="src/main/proto">
-                                        <include name="**/*.proto"/>
+                                        <include name="**/*.proto" />
                                     </fileset>
                                 </path>
-                                <pathconvert pathsep=" " property="proto.files" refid="proto.path"/>
-                                <echo>${proto.files}</echo>
-                                <exec executable="protoc" failonerror="true" >
+                                <pathconvert pathsep=" " property="proto.files" refid="proto.path" />
+                                <echo>Compiling protobuf packets to ${protobuf.generated}</echo>
+                                <exec executable="Y:/tools/protoc.exe" failonerror="true" >
                                     <arg value="--java_out=${protobuf.generated}"/>
                                     <arg value="-I${project.basedir}/src/main/proto"/>
                                     <arg line="${proto.files}"/>

@@ -1,6 +1,7 @@
 package com.fictionalrealm.osserc.net.lsnr;
 
 import com.fictionalrealm.osserc.net.ConnectionMap;
+import com.fictionalrealm.osserc.protocol.datatypes.DisconnectionReason;
 import com.fictionalrealm.osserc.protocol.datatypes.ServerStatus;
 import com.fictionalrealm.osserc.protocol.sp.WelcomeSP;
 import org.jboss.netty.channel.*;
@@ -42,6 +43,12 @@ public class ConnectionHandler extends SimpleChannelUpstreamHandler {
 
     @Override
     public void channelDisconnected(ChannelHandlerContext ctx, ChannelStateEvent e) {
-        logger.info("Client connected");
+        logger.info("Client " + ctx.getChannel().getRemoteAddress() + " disconnected");
+        connectionMap.getConnection((Long)ctx.getAttachment()).disconnectConnection(DisconnectionReason.CONNECTION_ERROR);
+    }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) throws Exception {
+        logger.info("Error in connection " + ctx.getChannel().getRemoteAddress() + " - " + e.getCause() != null ? e.getCause().getMessage() : "");
     }
 }
