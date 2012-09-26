@@ -9,11 +9,9 @@ import javax.inject.Inject;
 import java.util.concurrent.*;
 
 /**
- * Created with IntelliJ IDEA.
  * User: Yervand.Aghababyan
  * Date: 8/21/12
  * Time: 12:28 AM
- * To change this template use File | Settings | File Templates.
  */
 @ThreadSafe
 public class ConnectionMap {
