@@ -38,7 +38,7 @@ import java.util.concurrent.ConcurrentMap;
 @Singleton
 public class PacketMap {
 
-    private final Logger logger = LoggerFactory.getLogger("packetMap");
+    private final Logger logger = LoggerFactory.getLogger("c.f.osserc.PacketMap");
 
     private final ConcurrentMap<Integer, Message> clientPackets = new ConcurrentHashMap<Integer, Message>();
     private final ConcurrentMap<Class<?>, Byte[]> serverPackets = new ConcurrentHashMap<Class<?>, Byte[]>();
@@ -85,7 +85,7 @@ public class PacketMap {
             throw e;
         }
 
-        if(!c.isInstance(Message.class)) {
+        if(!Message.class.isAssignableFrom(c)) {
             logger.error("Failed to load packet:" + className + " class does extend Message class!");
         }
 

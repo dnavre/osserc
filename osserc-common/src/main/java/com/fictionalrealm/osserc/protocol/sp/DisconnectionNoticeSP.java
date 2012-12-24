@@ -43,16 +43,16 @@ public  final class DisconnectionNoticeSP extends
   
   // optional string msg = 2;
   public static final int MSG_FIELD_NUMBER = 2;
-  private java.lang.Object msg_;
+  private Object msg_;
   public boolean hasMsg() {
     return ((bitField0_ & 0x00000002) == 0x00000002);
   }
   public String getMsg() {
-    java.lang.Object ref = msg_;
+    Object ref = msg_;
     if (ref instanceof String) {
       return (String) ref;
     } else {
-      com.google.protobuf.ByteString bs = 
+      com.google.protobuf.ByteString bs =
           (com.google.protobuf.ByteString) ref;
       String s = bs.toStringUtf8();
       if (com.google.protobuf.Internal.isValidUtf8(bs)) {
@@ -62,9 +62,9 @@ public  final class DisconnectionNoticeSP extends
     }
   }
   private com.google.protobuf.ByteString getMsgBytes() {
-    java.lang.Object ref = msg_;
+    Object ref = msg_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b = 
+      com.google.protobuf.ByteString b =
           com.google.protobuf.ByteString.copyFromUtf8((String) ref);
       msg_ = b;
       return b;
@@ -72,7 +72,7 @@ public  final class DisconnectionNoticeSP extends
       return (com.google.protobuf.ByteString) ref;
     }
   }
-  
+
   private void initFields() {
     reason_ = com.fictionalrealm.osserc.protocol.datatypes.DisconnectionReason.SERVER_SHUTDOWN;
     msg_ = "";
@@ -81,7 +81,7 @@ public  final class DisconnectionNoticeSP extends
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
     if (isInitialized != -1) return isInitialized == 1;
-    
+
     if (!hasReason()) {
       memoizedIsInitialized = 0;
       return false;
@@ -89,7 +89,7 @@ public  final class DisconnectionNoticeSP extends
     memoizedIsInitialized = 1;
     return true;
   }
-  
+
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     getSerializedSize();
@@ -101,12 +101,12 @@ public  final class DisconnectionNoticeSP extends
     }
     getUnknownFields().writeTo(output);
   }
-  
+
   private int memoizedSerializedSize = -1;
   public int getSerializedSize() {
     int size = memoizedSerializedSize;
     if (size != -1) return size;
-  
+
     size = 0;
     if (((bitField0_ & 0x00000001) == 0x00000001)) {
       size += com.google.protobuf.CodedOutputStream
@@ -120,49 +120,49 @@ public  final class DisconnectionNoticeSP extends
     memoizedSerializedSize = size;
     return size;
   }
-  
+
   private static final long serialVersionUID = 0L;
-  @java.lang.Override
-  protected java.lang.Object writeReplace()
+  @Override
+  protected Object writeReplace()
       throws java.io.ObjectStreamException {
     return super.writeReplace();
   }
-  
-  public static com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP parseFrom(
+
+  public static DisconnectionNoticeSP parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return newBuilder().mergeFrom(data).buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP parseFrom(
+  public static DisconnectionNoticeSP parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return newBuilder().mergeFrom(data, extensionRegistry)
              .buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP parseFrom(byte[] data)
+  public static DisconnectionNoticeSP parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return newBuilder().mergeFrom(data).buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP parseFrom(
+  public static DisconnectionNoticeSP parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return newBuilder().mergeFrom(data, extensionRegistry)
              .buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP parseFrom(java.io.InputStream input)
+  public static DisconnectionNoticeSP parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return newBuilder().mergeFrom(input).buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP parseFrom(
+  public static DisconnectionNoticeSP parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return newBuilder().mergeFrom(input, extensionRegistry)
              .buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP parseDelimitedFrom(java.io.InputStream input)
+  public static DisconnectionNoticeSP parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     Builder builder = newBuilder();
     if (builder.mergeDelimitedFrom(input)) {
@@ -171,7 +171,7 @@ public  final class DisconnectionNoticeSP extends
       return null;
     }
   }
-  public static com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP parseDelimitedFrom(
+  public static DisconnectionNoticeSP parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -182,27 +182,27 @@ public  final class DisconnectionNoticeSP extends
       return null;
     }
   }
-  public static com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP parseFrom(
+  public static DisconnectionNoticeSP parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return newBuilder().mergeFrom(input).buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP parseFrom(
+  public static DisconnectionNoticeSP parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return newBuilder().mergeFrom(input, extensionRegistry)
              .buildParsed();
   }
-  
+
   public static Builder newBuilder() { return Builder.create(); }
   public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder(com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP prototype) {
+  public static Builder newBuilder(DisconnectionNoticeSP prototype) {
     return newBuilder().mergeFrom(prototype);
   }
   public Builder toBuilder() { return newBuilder(this); }
-  
-  @java.lang.Override
+
+  @Override
   protected Builder newBuilderForType(
       com.google.protobuf.GeneratedMessage.BuilderParent parent) {
     Builder builder = new Builder(parent);
@@ -210,22 +210,22 @@ public  final class DisconnectionNoticeSP extends
   }
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder>
-     implements com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSPOrBuilder {
+     implements DisconnectionNoticeSPOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.fictionalrealm.osserc.protocol.sp.ServerProtocol.internal_static_osserc_sp_DisconnectionNoticeSP_descriptor;
     }
-    
+
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.fictionalrealm.osserc.protocol.sp.ServerProtocol.internal_static_osserc_sp_DisconnectionNoticeSP_fieldAccessorTable;
     }
-    
+
     // Construct using com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
-    
+
     private Builder(BuilderParent parent) {
       super(parent);
       maybeForceBuilderInitialization();
@@ -237,7 +237,7 @@ public  final class DisconnectionNoticeSP extends
     private static Builder create() {
       return new Builder();
     }
-    
+
     public Builder clear() {
       super.clear();
       reason_ = com.fictionalrealm.osserc.protocol.datatypes.DisconnectionReason.SERVER_SHUTDOWN;
@@ -246,40 +246,40 @@ public  final class DisconnectionNoticeSP extends
       bitField0_ = (bitField0_ & ~0x00000002);
       return this;
     }
-    
+
     public Builder clone() {
       return create().mergeFrom(buildPartial());
     }
-    
+
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP.getDescriptor();
+      return DisconnectionNoticeSP.getDescriptor();
     }
-    
-    public com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP getDefaultInstanceForType() {
-      return com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP.getDefaultInstance();
+
+    public DisconnectionNoticeSP getDefaultInstanceForType() {
+      return DisconnectionNoticeSP.getDefaultInstance();
     }
-    
-    public com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP build() {
-      com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP result = buildPartial();
+
+    public DisconnectionNoticeSP build() {
+      DisconnectionNoticeSP result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
-    
-    private com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP buildParsed()
+
+    private DisconnectionNoticeSP buildParsed()
         throws com.google.protobuf.InvalidProtocolBufferException {
-      com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP result = buildPartial();
+      DisconnectionNoticeSP result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(
           result).asInvalidProtocolBufferException();
       }
       return result;
     }
-    
-    public com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP buildPartial() {
-      com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP result = new com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP(this);
+
+    public DisconnectionNoticeSP buildPartial() {
+      DisconnectionNoticeSP result = new DisconnectionNoticeSP(this);
       int from_bitField0_ = bitField0_;
       int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -294,18 +294,18 @@ public  final class DisconnectionNoticeSP extends
       onBuilt();
       return result;
     }
-    
+
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP) {
-        return mergeFrom((com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP)other);
+      if (other instanceof DisconnectionNoticeSP) {
+        return mergeFrom((DisconnectionNoticeSP)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
-    
-    public Builder mergeFrom(com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP other) {
-      if (other == com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP.getDefaultInstance()) return this;
+
+    public Builder mergeFrom(DisconnectionNoticeSP other) {
+      if (other == DisconnectionNoticeSP.getDefaultInstance()) return this;
       if (other.hasReason()) {
         setReason(other.getReason());
       }
@@ -315,15 +315,15 @@ public  final class DisconnectionNoticeSP extends
       this.mergeUnknownFields(other.getUnknownFields());
       return this;
     }
-    
+
     public final boolean isInitialized() {
       if (!hasReason()) {
-        
+
         return false;
       }
       return true;
     }
-    
+
     public Builder mergeFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -366,9 +366,9 @@ public  final class DisconnectionNoticeSP extends
         }
       }
     }
-    
+
     private int bitField0_;
-    
+
     // required .osserc.dt.DisconnectionReason reason = 1;
     private com.fictionalrealm.osserc.protocol.datatypes.DisconnectionReason reason_ = com.fictionalrealm.osserc.protocol.datatypes.DisconnectionReason.SERVER_SHUTDOWN;
     public boolean hasReason() {
@@ -392,14 +392,14 @@ public  final class DisconnectionNoticeSP extends
       onChanged();
       return this;
     }
-    
+
     // optional string msg = 2;
-    private java.lang.Object msg_ = "";
+    private Object msg_ = "";
     public boolean hasMsg() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public String getMsg() {
-      java.lang.Object ref = msg_;
+      Object ref = msg_;
       if (!(ref instanceof String)) {
         String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
         msg_ = s;

@@ -63,7 +63,7 @@ public enum DisconnectionReason
   public static DisconnectionReason valueOf(
       com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
     if (desc.getType() != getDescriptor()) {
-      throw new java.lang.IllegalArgumentException(
+      throw new IllegalArgumentException(
         "EnumValueDescriptor is not for this type.");
     }
     return VALUES[desc.getIndex()];

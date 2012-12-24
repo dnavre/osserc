@@ -21,7 +21,7 @@ public final class ClientProtocol {
   private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    java.lang.String[] descriptorData = {
+    String[] descriptorData = {
       "\n\024ClientProtocol.proto\022\tosserc.cp\032\017DataT" +
       "ypes.proto\"=\n\010InitUser\022\020\n\010username\030\001 \002(\t" +
       "\022\020\n\010password\030\002 \002(\t\022\r\n\005token\030\003 \001(\tB;\n%com" +
@@ -38,7 +38,7 @@ public final class ClientProtocol {
           internal_static_osserc_cp_InitUser_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_osserc_cp_InitUser_descriptor,
-              new java.lang.String[] { "Username", "Password", "Token", },
+              new String[] { "Username", "Password", "Token", },
               com.fictionalrealm.osserc.protocol.cp.InitUser.class,
               com.fictionalrealm.osserc.protocol.cp.InitUser.Builder.class);
           return null;

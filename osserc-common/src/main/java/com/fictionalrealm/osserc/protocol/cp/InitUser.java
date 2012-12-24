@@ -22,27 +22,27 @@ public  final class InitUser extends
   
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.fictionalrealm.osserc.protocol.cp.ClientProtocol.internal_static_osserc_cp_InitUser_descriptor;
+    return ClientProtocol.internal_static_osserc_cp_InitUser_descriptor;
   }
-  
+
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.fictionalrealm.osserc.protocol.cp.ClientProtocol.internal_static_osserc_cp_InitUser_fieldAccessorTable;
+    return ClientProtocol.internal_static_osserc_cp_InitUser_fieldAccessorTable;
   }
-  
+
   private int bitField0_;
   // required string username = 1;
   public static final int USERNAME_FIELD_NUMBER = 1;
-  private java.lang.Object username_;
+  private Object username_;
   public boolean hasUsername() {
     return ((bitField0_ & 0x00000001) == 0x00000001);
   }
   public String getUsername() {
-    java.lang.Object ref = username_;
+    Object ref = username_;
     if (ref instanceof String) {
       return (String) ref;
     } else {
-      com.google.protobuf.ByteString bs = 
+      com.google.protobuf.ByteString bs =
           (com.google.protobuf.ByteString) ref;
       String s = bs.toStringUtf8();
       if (com.google.protobuf.Internal.isValidUtf8(bs)) {
@@ -52,9 +52,9 @@ public  final class InitUser extends
     }
   }
   private com.google.protobuf.ByteString getUsernameBytes() {
-    java.lang.Object ref = username_;
+    Object ref = username_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b = 
+      com.google.protobuf.ByteString b =
           com.google.protobuf.ByteString.copyFromUtf8((String) ref);
       username_ = b;
       return b;
@@ -62,19 +62,19 @@ public  final class InitUser extends
       return (com.google.protobuf.ByteString) ref;
     }
   }
-  
+
   // required string password = 2;
   public static final int PASSWORD_FIELD_NUMBER = 2;
-  private java.lang.Object password_;
+  private Object password_;
   public boolean hasPassword() {
     return ((bitField0_ & 0x00000002) == 0x00000002);
   }
   public String getPassword() {
-    java.lang.Object ref = password_;
+    Object ref = password_;
     if (ref instanceof String) {
       return (String) ref;
     } else {
-      com.google.protobuf.ByteString bs = 
+      com.google.protobuf.ByteString bs =
           (com.google.protobuf.ByteString) ref;
       String s = bs.toStringUtf8();
       if (com.google.protobuf.Internal.isValidUtf8(bs)) {
@@ -84,9 +84,9 @@ public  final class InitUser extends
     }
   }
   private com.google.protobuf.ByteString getPasswordBytes() {
-    java.lang.Object ref = password_;
+    Object ref = password_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b = 
+      com.google.protobuf.ByteString b =
           com.google.protobuf.ByteString.copyFromUtf8((String) ref);
       password_ = b;
       return b;
@@ -94,19 +94,19 @@ public  final class InitUser extends
       return (com.google.protobuf.ByteString) ref;
     }
   }
-  
+
   // optional string token = 3;
   public static final int TOKEN_FIELD_NUMBER = 3;
-  private java.lang.Object token_;
+  private Object token_;
   public boolean hasToken() {
     return ((bitField0_ & 0x00000004) == 0x00000004);
   }
   public String getToken() {
-    java.lang.Object ref = token_;
+    Object ref = token_;
     if (ref instanceof String) {
       return (String) ref;
     } else {
-      com.google.protobuf.ByteString bs = 
+      com.google.protobuf.ByteString bs =
           (com.google.protobuf.ByteString) ref;
       String s = bs.toStringUtf8();
       if (com.google.protobuf.Internal.isValidUtf8(bs)) {
@@ -116,9 +116,9 @@ public  final class InitUser extends
     }
   }
   private com.google.protobuf.ByteString getTokenBytes() {
-    java.lang.Object ref = token_;
+    Object ref = token_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b = 
+      com.google.protobuf.ByteString b =
           com.google.protobuf.ByteString.copyFromUtf8((String) ref);
       token_ = b;
       return b;
@@ -126,7 +126,7 @@ public  final class InitUser extends
       return (com.google.protobuf.ByteString) ref;
     }
   }
-  
+
   private void initFields() {
     username_ = "";
     password_ = "";
@@ -136,7 +136,7 @@ public  final class InitUser extends
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
     if (isInitialized != -1) return isInitialized == 1;
-    
+
     if (!hasUsername()) {
       memoizedIsInitialized = 0;
       return false;
@@ -148,7 +148,7 @@ public  final class InitUser extends
     memoizedIsInitialized = 1;
     return true;
   }
-  
+
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     getSerializedSize();
@@ -163,12 +163,12 @@ public  final class InitUser extends
     }
     getUnknownFields().writeTo(output);
   }
-  
+
   private int memoizedSerializedSize = -1;
   public int getSerializedSize() {
     int size = memoizedSerializedSize;
     if (size != -1) return size;
-  
+
     size = 0;
     if (((bitField0_ & 0x00000001) == 0x00000001)) {
       size += com.google.protobuf.CodedOutputStream
@@ -186,49 +186,49 @@ public  final class InitUser extends
     memoizedSerializedSize = size;
     return size;
   }
-  
+
   private static final long serialVersionUID = 0L;
-  @java.lang.Override
-  protected java.lang.Object writeReplace()
+  @Override
+  protected Object writeReplace()
       throws java.io.ObjectStreamException {
     return super.writeReplace();
   }
-  
-  public static com.fictionalrealm.osserc.protocol.cp.InitUser parseFrom(
+
+  public static InitUser parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return newBuilder().mergeFrom(data).buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.cp.InitUser parseFrom(
+  public static InitUser parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return newBuilder().mergeFrom(data, extensionRegistry)
              .buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.cp.InitUser parseFrom(byte[] data)
+  public static InitUser parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return newBuilder().mergeFrom(data).buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.cp.InitUser parseFrom(
+  public static InitUser parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return newBuilder().mergeFrom(data, extensionRegistry)
              .buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.cp.InitUser parseFrom(java.io.InputStream input)
+  public static InitUser parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return newBuilder().mergeFrom(input).buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.cp.InitUser parseFrom(
+  public static InitUser parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return newBuilder().mergeFrom(input, extensionRegistry)
              .buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.cp.InitUser parseDelimitedFrom(java.io.InputStream input)
+  public static InitUser parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     Builder builder = newBuilder();
     if (builder.mergeDelimitedFrom(input)) {
@@ -237,7 +237,7 @@ public  final class InitUser extends
       return null;
     }
   }
-  public static com.fictionalrealm.osserc.protocol.cp.InitUser parseDelimitedFrom(
+  public static InitUser parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -248,27 +248,27 @@ public  final class InitUser extends
       return null;
     }
   }
-  public static com.fictionalrealm.osserc.protocol.cp.InitUser parseFrom(
+  public static InitUser parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return newBuilder().mergeFrom(input).buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.cp.InitUser parseFrom(
+  public static InitUser parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return newBuilder().mergeFrom(input, extensionRegistry)
              .buildParsed();
   }
-  
+
   public static Builder newBuilder() { return Builder.create(); }
   public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder(com.fictionalrealm.osserc.protocol.cp.InitUser prototype) {
+  public static Builder newBuilder(InitUser prototype) {
     return newBuilder().mergeFrom(prototype);
   }
   public Builder toBuilder() { return newBuilder(this); }
-  
-  @java.lang.Override
+
+  @Override
   protected Builder newBuilderForType(
       com.google.protobuf.GeneratedMessage.BuilderParent parent) {
     Builder builder = new Builder(parent);
@@ -276,22 +276,22 @@ public  final class InitUser extends
   }
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder>
-     implements com.fictionalrealm.osserc.protocol.cp.InitUserOrBuilder {
+     implements InitUserOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.fictionalrealm.osserc.protocol.cp.ClientProtocol.internal_static_osserc_cp_InitUser_descriptor;
+      return ClientProtocol.internal_static_osserc_cp_InitUser_descriptor;
     }
-    
+
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.fictionalrealm.osserc.protocol.cp.ClientProtocol.internal_static_osserc_cp_InitUser_fieldAccessorTable;
+      return ClientProtocol.internal_static_osserc_cp_InitUser_fieldAccessorTable;
     }
-    
+
     // Construct using com.fictionalrealm.osserc.protocol.cp.InitUser.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
-    
+
     private Builder(BuilderParent parent) {
       super(parent);
       maybeForceBuilderInitialization();
@@ -303,7 +303,7 @@ public  final class InitUser extends
     private static Builder create() {
       return new Builder();
     }
-    
+
     public Builder clear() {
       super.clear();
       username_ = "";
@@ -314,40 +314,40 @@ public  final class InitUser extends
       bitField0_ = (bitField0_ & ~0x00000004);
       return this;
     }
-    
+
     public Builder clone() {
       return create().mergeFrom(buildPartial());
     }
-    
+
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.fictionalrealm.osserc.protocol.cp.InitUser.getDescriptor();
+      return InitUser.getDescriptor();
     }
-    
-    public com.fictionalrealm.osserc.protocol.cp.InitUser getDefaultInstanceForType() {
-      return com.fictionalrealm.osserc.protocol.cp.InitUser.getDefaultInstance();
+
+    public InitUser getDefaultInstanceForType() {
+      return InitUser.getDefaultInstance();
     }
-    
-    public com.fictionalrealm.osserc.protocol.cp.InitUser build() {
-      com.fictionalrealm.osserc.protocol.cp.InitUser result = buildPartial();
+
+    public InitUser build() {
+      InitUser result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
-    
-    private com.fictionalrealm.osserc.protocol.cp.InitUser buildParsed()
+
+    private InitUser buildParsed()
         throws com.google.protobuf.InvalidProtocolBufferException {
-      com.fictionalrealm.osserc.protocol.cp.InitUser result = buildPartial();
+      InitUser result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(
           result).asInvalidProtocolBufferException();
       }
       return result;
     }
-    
-    public com.fictionalrealm.osserc.protocol.cp.InitUser buildPartial() {
-      com.fictionalrealm.osserc.protocol.cp.InitUser result = new com.fictionalrealm.osserc.protocol.cp.InitUser(this);
+
+    public InitUser buildPartial() {
+      InitUser result = new InitUser(this);
       int from_bitField0_ = bitField0_;
       int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -366,18 +366,18 @@ public  final class InitUser extends
       onBuilt();
       return result;
     }
-    
+
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.fictionalrealm.osserc.protocol.cp.InitUser) {
-        return mergeFrom((com.fictionalrealm.osserc.protocol.cp.InitUser)other);
+      if (other instanceof InitUser) {
+        return mergeFrom((InitUser)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
-    
-    public Builder mergeFrom(com.fictionalrealm.osserc.protocol.cp.InitUser other) {
-      if (other == com.fictionalrealm.osserc.protocol.cp.InitUser.getDefaultInstance()) return this;
+
+    public Builder mergeFrom(InitUser other) {
+      if (other == InitUser.getDefaultInstance()) return this;
       if (other.hasUsername()) {
         setUsername(other.getUsername());
       }
@@ -390,19 +390,19 @@ public  final class InitUser extends
       this.mergeUnknownFields(other.getUnknownFields());
       return this;
     }
-    
+
     public final boolean isInitialized() {
       if (!hasUsername()) {
-        
+
         return false;
       }
       if (!hasPassword()) {
-        
+
         return false;
       }
       return true;
     }
-    
+
     public Builder mergeFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -444,16 +444,16 @@ public  final class InitUser extends
         }
       }
     }
-    
+
     private int bitField0_;
-    
+
     // required string username = 1;
-    private java.lang.Object username_ = "";
+    private Object username_ = "";
     public boolean hasUsername() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     public String getUsername() {
-      java.lang.Object ref = username_;
+      Object ref = username_;
       if (!(ref instanceof String)) {
         String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
         username_ = s;
@@ -482,14 +482,14 @@ public  final class InitUser extends
       username_ = value;
       onChanged();
     }
-    
+
     // required string password = 2;
-    private java.lang.Object password_ = "";
+    private Object password_ = "";
     public boolean hasPassword() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public String getPassword() {
-      java.lang.Object ref = password_;
+      Object ref = password_;
       if (!(ref instanceof String)) {
         String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
         password_ = s;
@@ -518,14 +518,14 @@ public  final class InitUser extends
       password_ = value;
       onChanged();
     }
-    
+
     // optional string token = 3;
-    private java.lang.Object token_ = "";
+    private Object token_ = "";
     public boolean hasToken() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public String getToken() {
-      java.lang.Object ref = token_;
+      Object ref = token_;
       if (!(ref instanceof String)) {
         String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
         token_ = s;

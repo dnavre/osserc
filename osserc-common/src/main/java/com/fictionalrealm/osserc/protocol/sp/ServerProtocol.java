@@ -26,7 +26,7 @@ public final class ServerProtocol {
   private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    java.lang.String[] descriptorData = {
+    String[] descriptorData = {
       "\n\024ServerProtocol.proto\022\tosserc.sp\032\017DataT" +
       "ypes.proto\"X\n\tWelcomeSP\022\017\n\007version\030\001 \002(\005" +
       "\022-\n\014serverStatus\030\002 \002(\0162\027.osserc.dt.Serve" +
@@ -46,17 +46,17 @@ public final class ServerProtocol {
           internal_static_osserc_sp_WelcomeSP_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_osserc_sp_WelcomeSP_descriptor,
-              new java.lang.String[] { "Version", "ServerStatus", "Msg", },
-              com.fictionalrealm.osserc.protocol.sp.WelcomeSP.class,
-              com.fictionalrealm.osserc.protocol.sp.WelcomeSP.Builder.class);
+              new String[] { "Version", "ServerStatus", "Msg", },
+              WelcomeSP.class,
+              WelcomeSP.Builder.class);
           internal_static_osserc_sp_DisconnectionNoticeSP_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_osserc_sp_DisconnectionNoticeSP_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_osserc_sp_DisconnectionNoticeSP_descriptor,
-              new java.lang.String[] { "Reason", "Msg", },
-              com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP.class,
-              com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP.Builder.class);
+              new String[] { "Reason", "Msg", },
+              DisconnectionNoticeSP.class,
+              DisconnectionNoticeSP.Builder.class);
           return null;
         }
       };

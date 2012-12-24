@@ -16,7 +16,7 @@ public final class DataTypes {
   private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    java.lang.String[] descriptorData = {
+    String[] descriptorData = {
       "\n\017DataTypes.proto\022\tosserc.dt*i\n\014ServerSt" +
       "atus\022\n\n\006ONLINE\020\000\022\013\n\007OFFLINE\020\001\022\027\n\023AUTH_SE" +
       "RVER_OFFLINE\020\002\022\017\n\013MAINTENANCE\020\003\022\026\n\022MAP_S" +

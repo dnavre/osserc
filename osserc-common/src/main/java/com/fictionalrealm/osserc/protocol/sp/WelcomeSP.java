@@ -53,16 +53,16 @@ public  final class WelcomeSP extends
   
   // optional string msg = 3;
   public static final int MSG_FIELD_NUMBER = 3;
-  private java.lang.Object msg_;
+  private Object msg_;
   public boolean hasMsg() {
     return ((bitField0_ & 0x00000004) == 0x00000004);
   }
   public String getMsg() {
-    java.lang.Object ref = msg_;
+    Object ref = msg_;
     if (ref instanceof String) {
       return (String) ref;
     } else {
-      com.google.protobuf.ByteString bs = 
+      com.google.protobuf.ByteString bs =
           (com.google.protobuf.ByteString) ref;
       String s = bs.toStringUtf8();
       if (com.google.protobuf.Internal.isValidUtf8(bs)) {
@@ -72,9 +72,9 @@ public  final class WelcomeSP extends
     }
   }
   private com.google.protobuf.ByteString getMsgBytes() {
-    java.lang.Object ref = msg_;
+    Object ref = msg_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b = 
+      com.google.protobuf.ByteString b =
           com.google.protobuf.ByteString.copyFromUtf8((String) ref);
       msg_ = b;
       return b;
@@ -82,7 +82,7 @@ public  final class WelcomeSP extends
       return (com.google.protobuf.ByteString) ref;
     }
   }
-  
+
   private void initFields() {
     version_ = 0;
     serverStatus_ = com.fictionalrealm.osserc.protocol.datatypes.ServerStatus.ONLINE;
@@ -92,7 +92,7 @@ public  final class WelcomeSP extends
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
     if (isInitialized != -1) return isInitialized == 1;
-    
+
     if (!hasVersion()) {
       memoizedIsInitialized = 0;
       return false;
@@ -104,7 +104,7 @@ public  final class WelcomeSP extends
     memoizedIsInitialized = 1;
     return true;
   }
-  
+
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     getSerializedSize();
@@ -119,12 +119,12 @@ public  final class WelcomeSP extends
     }
     getUnknownFields().writeTo(output);
   }
-  
+
   private int memoizedSerializedSize = -1;
   public int getSerializedSize() {
     int size = memoizedSerializedSize;
     if (size != -1) return size;
-  
+
     size = 0;
     if (((bitField0_ & 0x00000001) == 0x00000001)) {
       size += com.google.protobuf.CodedOutputStream
@@ -142,49 +142,49 @@ public  final class WelcomeSP extends
     memoizedSerializedSize = size;
     return size;
   }
-  
+
   private static final long serialVersionUID = 0L;
-  @java.lang.Override
-  protected java.lang.Object writeReplace()
+  @Override
+  protected Object writeReplace()
       throws java.io.ObjectStreamException {
     return super.writeReplace();
   }
-  
-  public static com.fictionalrealm.osserc.protocol.sp.WelcomeSP parseFrom(
+
+  public static WelcomeSP parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return newBuilder().mergeFrom(data).buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.sp.WelcomeSP parseFrom(
+  public static WelcomeSP parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return newBuilder().mergeFrom(data, extensionRegistry)
              .buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.sp.WelcomeSP parseFrom(byte[] data)
+  public static WelcomeSP parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return newBuilder().mergeFrom(data).buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.sp.WelcomeSP parseFrom(
+  public static WelcomeSP parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return newBuilder().mergeFrom(data, extensionRegistry)
              .buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.sp.WelcomeSP parseFrom(java.io.InputStream input)
+  public static WelcomeSP parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return newBuilder().mergeFrom(input).buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.sp.WelcomeSP parseFrom(
+  public static WelcomeSP parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return newBuilder().mergeFrom(input, extensionRegistry)
              .buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.sp.WelcomeSP parseDelimitedFrom(java.io.InputStream input)
+  public static WelcomeSP parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     Builder builder = newBuilder();
     if (builder.mergeDelimitedFrom(input)) {
@@ -193,7 +193,7 @@ public  final class WelcomeSP extends
       return null;
     }
   }
-  public static com.fictionalrealm.osserc.protocol.sp.WelcomeSP parseDelimitedFrom(
+  public static WelcomeSP parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -204,27 +204,27 @@ public  final class WelcomeSP extends
       return null;
     }
   }
-  public static com.fictionalrealm.osserc.protocol.sp.WelcomeSP parseFrom(
+  public static WelcomeSP parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return newBuilder().mergeFrom(input).buildParsed();
   }
-  public static com.fictionalrealm.osserc.protocol.sp.WelcomeSP parseFrom(
+  public static WelcomeSP parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return newBuilder().mergeFrom(input, extensionRegistry)
              .buildParsed();
   }
-  
+
   public static Builder newBuilder() { return Builder.create(); }
   public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder(com.fictionalrealm.osserc.protocol.sp.WelcomeSP prototype) {
+  public static Builder newBuilder(WelcomeSP prototype) {
     return newBuilder().mergeFrom(prototype);
   }
   public Builder toBuilder() { return newBuilder(this); }
-  
-  @java.lang.Override
+
+  @Override
   protected Builder newBuilderForType(
       com.google.protobuf.GeneratedMessage.BuilderParent parent) {
     Builder builder = new Builder(parent);
@@ -232,22 +232,22 @@ public  final class WelcomeSP extends
   }
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder>
-     implements com.fictionalrealm.osserc.protocol.sp.WelcomeSPOrBuilder {
+     implements WelcomeSPOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.fictionalrealm.osserc.protocol.sp.ServerProtocol.internal_static_osserc_sp_WelcomeSP_descriptor;
     }
-    
+
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.fictionalrealm.osserc.protocol.sp.ServerProtocol.internal_static_osserc_sp_WelcomeSP_fieldAccessorTable;
     }
-    
+
     // Construct using com.fictionalrealm.osserc.protocol.sp.WelcomeSP.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
-    
+
     private Builder(BuilderParent parent) {
       super(parent);
       maybeForceBuilderInitialization();
@@ -259,7 +259,7 @@ public  final class WelcomeSP extends
     private static Builder create() {
       return new Builder();
     }
-    
+
     public Builder clear() {
       super.clear();
       version_ = 0;
@@ -270,40 +270,40 @@ public  final class WelcomeSP extends
       bitField0_ = (bitField0_ & ~0x00000004);
       return this;
     }
-    
+
     public Builder clone() {
       return create().mergeFrom(buildPartial());
     }
-    
+
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.fictionalrealm.osserc.protocol.sp.WelcomeSP.getDescriptor();
+      return WelcomeSP.getDescriptor();
     }
-    
-    public com.fictionalrealm.osserc.protocol.sp.WelcomeSP getDefaultInstanceForType() {
-      return com.fictionalrealm.osserc.protocol.sp.WelcomeSP.getDefaultInstance();
+
+    public WelcomeSP getDefaultInstanceForType() {
+      return WelcomeSP.getDefaultInstance();
     }
-    
-    public com.fictionalrealm.osserc.protocol.sp.WelcomeSP build() {
-      com.fictionalrealm.osserc.protocol.sp.WelcomeSP result = buildPartial();
+
+    public WelcomeSP build() {
+      WelcomeSP result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
-    
-    private com.fictionalrealm.osserc.protocol.sp.WelcomeSP buildParsed()
+
+    private WelcomeSP buildParsed()
         throws com.google.protobuf.InvalidProtocolBufferException {
-      com.fictionalrealm.osserc.protocol.sp.WelcomeSP result = buildPartial();
+      WelcomeSP result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(
           result).asInvalidProtocolBufferException();
       }
       return result;
     }
-    
-    public com.fictionalrealm.osserc.protocol.sp.WelcomeSP buildPartial() {
-      com.fictionalrealm.osserc.protocol.sp.WelcomeSP result = new com.fictionalrealm.osserc.protocol.sp.WelcomeSP(this);
+
+    public WelcomeSP buildPartial() {
+      WelcomeSP result = new WelcomeSP(this);
       int from_bitField0_ = bitField0_;
       int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -322,18 +322,18 @@ public  final class WelcomeSP extends
       onBuilt();
       return result;
     }
-    
+
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.fictionalrealm.osserc.protocol.sp.WelcomeSP) {
-        return mergeFrom((com.fictionalrealm.osserc.protocol.sp.WelcomeSP)other);
+      if (other instanceof WelcomeSP) {
+        return mergeFrom((WelcomeSP)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
-    
-    public Builder mergeFrom(com.fictionalrealm.osserc.protocol.sp.WelcomeSP other) {
-      if (other == com.fictionalrealm.osserc.protocol.sp.WelcomeSP.getDefaultInstance()) return this;
+
+    public Builder mergeFrom(WelcomeSP other) {
+      if (other == WelcomeSP.getDefaultInstance()) return this;
       if (other.hasVersion()) {
         setVersion(other.getVersion());
       }
@@ -346,19 +346,19 @@ public  final class WelcomeSP extends
       this.mergeUnknownFields(other.getUnknownFields());
       return this;
     }
-    
+
     public final boolean isInitialized() {
       if (!hasVersion()) {
-        
+
         return false;
       }
       if (!hasServerStatus()) {
-        
+
         return false;
       }
       return true;
     }
-    
+
     public Builder mergeFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -406,9 +406,9 @@ public  final class WelcomeSP extends
         }
       }
     }
-    
+
     private int bitField0_;
-    
+
     // required int32 version = 1;
     private int version_ ;
     public boolean hasVersion() {
@@ -429,7 +429,7 @@ public  final class WelcomeSP extends
       onChanged();
       return this;
     }
-    
+
     // required .osserc.dt.ServerStatus serverStatus = 2;
     private com.fictionalrealm.osserc.protocol.datatypes.ServerStatus serverStatus_ = com.fictionalrealm.osserc.protocol.datatypes.ServerStatus.ONLINE;
     public boolean hasServerStatus() {
@@ -453,14 +453,14 @@ public  final class WelcomeSP extends
       onChanged();
       return this;
     }
-    
+
     // optional string msg = 3;
-    private java.lang.Object msg_ = "";
+    private Object msg_ = "";
     public boolean hasMsg() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public String getMsg() {
-      java.lang.Object ref = msg_;
+      Object ref = msg_;
       if (!(ref instanceof String)) {
         String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
         msg_ = s;
