@@ -1,19 +1,16 @@
 package com.fictionalrealm.osserc.net.protobuf;
 
-import com.fictionalrealm.osserc.net.PacketListener;
 import com.fictionalrealm.osserc.net.PacketMap;
-import com.google.protobuf.ExtensionRegistry;
-import com.google.protobuf.MessageLite;
-import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBufferInputStream;
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.handler.codec.oneone.OneToOneDecoder;
 
 /**
+ * Created with IntelliJ IDEA.
  * User: Yervand.Aghababyan
  * Date: 9/3/12
  * Time: 12:07 AM
+ * To change this template use File | Settings | File Templates.
  */
 public class OssercDecoder extends OneToOneDecoder {
    /* private final MessageLite prototype;
