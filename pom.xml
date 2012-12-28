@@ -9,7 +9,8 @@
     <name>Osserc-all</name>
 
     <properties>
-
+        <protobuf.version>2.4.1</protobuf.version>
+        <slf4j.api.version>1.6.6</slf4j.api.version>
     </properties>
 
     <modules>
@@ -17,6 +18,7 @@
         <module>osserc-common</module>
         <module>osserc-client</module>
         <module>osserc-server</module>
+        <module>osserc-networking</module>
     </modules>
 
 </project>

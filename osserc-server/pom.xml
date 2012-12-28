@@ -18,6 +18,12 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.fictionalrealm.osserc</groupId>
+            <artifactId>osserc-networking</artifactId>
+            <version>0.1.1-SNAPSHOT</version>
+        </dependency>
+
         <!-- Logging -->
         <dependency>
             <groupId>ch.qos.logback</groupId>

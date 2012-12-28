@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentMap;
  * Time: 2:05 AM
  */
 @Singleton
-public class PacketMap {
+public class PacketMap extends AbstractPacketMap {
 
     private final Logger logger = LoggerFactory.getLogger("c.f.osserc.PacketMap");
 

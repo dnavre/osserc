@@ -1,9 +1,8 @@
 package com.fictionalrealm.osserc.core;
 
-import com.fictionalrealm.osserc.net.lsnr.Listener;
 import com.fictionalrealm.osserc.net.PacketMap;
+import com.fictionalrealm.osserc.net.lsnr.Listener;
 import com.google.inject.Singleton;
-import org.apache.commons.configuration.ConfigurationException;
 import org.jboss.netty.channel.ChannelException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
