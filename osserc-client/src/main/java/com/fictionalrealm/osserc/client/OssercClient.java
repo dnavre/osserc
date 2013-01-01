@@ -1,9 +1,9 @@
 package com.fictionalrealm.osserc.client;
 
-import com.fictionalrealm.osserc.client.net.PacketDispatcher;
 import com.fictionalrealm.osserc.client.net.PacketProcessor;
 import org.jboss.netty.bootstrap.ClientBootstrap;
 import org.jboss.netty.channel.ChannelFactory;
+import org.jboss.netty.channel.ChannelFuture;
 import org.jboss.netty.channel.ChannelPipelineFactory;
 import org.jboss.netty.channel.Channels;
 import org.jboss.netty.channel.socket.nio.NioClientSocketChannelFactory;
@@ -17,6 +17,8 @@ import java.util.concurrent.Executors;
  * Time: 2:07 AM
  */
 public class OssercClient {
+
+    private ChannelFuture channel;
 
     public void connect(String host, int port) {
         ChannelFactory factory =
@@ -35,6 +37,11 @@ public class OssercClient {
         bootstrap.setOption("tcpNoDelay", true);
         bootstrap.setOption("keepAlive", true);
 
-        bootstrap.connect(new InetSocketAddress(host, port));
+        channel = bootstrap.connect(new InetSocketAddress(host, port));
+    }
+
+
+    public void authenticate(String username, String password) {
+        channel.
     }
 }

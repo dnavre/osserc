@@ -1,7 +1,7 @@
 package com.fictionalrealm.osserc.net.protobuf;
 
-import com.google.protobuf.CodedOutputStream;
 import com.fictionalrealm.osserc.net.PacketMap;
+import com.google.protobuf.CodedOutputStream;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBufferOutputStream;
 import org.jboss.netty.channel.Channel;

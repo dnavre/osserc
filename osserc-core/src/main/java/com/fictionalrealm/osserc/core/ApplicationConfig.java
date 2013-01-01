@@ -7,15 +7,16 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 
 /**
- * Created with IntelliJ IDEA.
  * User: Yervand.Aghababyan
  * Date: 8/7/12
  * Time: 12:12 PM
- * To change this template use File | Settings | File Templates.
  */
 public class ApplicationConfig {
 

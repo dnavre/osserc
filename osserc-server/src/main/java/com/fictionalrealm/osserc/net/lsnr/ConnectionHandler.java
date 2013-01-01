@@ -1,7 +1,7 @@
 package com.fictionalrealm.osserc.net.lsnr;
 
-import com.fictionalrealm.osserc.protocol.datatypes.DisconnectionReason;
 import com.fictionalrealm.osserc.net.ConnectionMap;
+import com.fictionalrealm.osserc.protocol.datatypes.DisconnectionReason;
 import org.jboss.netty.channel.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,11 +1,11 @@
 package com.fictionalrealm.osserc.net.lsnr;
 
+import com.fictionalrealm.osserc.net.protobuf.Osserc16LengthFieldPrependerPrepender;
+import com.fictionalrealm.osserc.net.protobuf.OssercEncoder;
 import com.google.inject.Injector;
 import org.jboss.netty.channel.ChannelPipeline;
 import org.jboss.netty.channel.ChannelPipelineFactory;
 import org.jboss.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
-import com.fictionalrealm.osserc.net.protobuf.Osserc16LengthFieldPrependerPrepender;
-import com.fictionalrealm.osserc.net.protobuf.OssercEncoder;
 
 import javax.inject.Inject;
 

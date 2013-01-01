@@ -4,19 +4,11 @@ import com.fictionalrealm.osserc.core.ApplicationConfig;
 import com.fictionalrealm.osserc.core.ApplicationManager;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.google.protobuf.Message;
 import org.apache.commons.codec.DecoderException;
-import org.apache.commons.codec.binary.Hex;
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 /**
  * User: Yervand.Aghababyan
@@ -28,9 +20,6 @@ public class PacketMap extends AbstractPacketMap {
 
     private final Logger logger = LoggerFactory.getLogger("c.f.osserc.PacketMap");
 
-    private final ConcurrentMap<Integer, Message> clientPackets = new ConcurrentHashMap<Integer, Message>();
-    private final ConcurrentMap<Class<?>, Byte[]> serverPackets = new ConcurrentHashMap<Class<?>, Byte[]>();
-
     private final ApplicationManager appManager;
 
     @Inject
@@ -41,14 +30,7 @@ public class PacketMap extends AbstractPacketMap {
     public void initialize(ApplicationConfig config) {
 
         try{
-            for (Map.Entry<String, String> e: config.getClientPackets().entrySet()) {
-                clientPackets.put(NumberUtils.createInteger(e.getKey()), getMessageByClassName(e.getValue()));
-            }
-
-            for (Map.Entry<String, String> e: config.getServerPackets().entrySet()) {
-                String key = Integer.toHexString(NumberUtils.createInteger(e.getKey()));
-                serverPackets.put(getClassByName(e.getValue()), ArrayUtils.toObject(Hex.decodeHex(key.toCharArray())));
-            }
+            super.initialize(config.getClientPackets(), config.getServerPackets());
         } catch (ClassNotFoundException e) {
             appManager.stop();
         } catch (NoSuchMethodException e) {
@@ -61,33 +43,5 @@ public class PacketMap extends AbstractPacketMap {
             logger.error("An unknown error occurred while loading packet list.");
             appManager.stop();
         }
-    }
-
-    private Message getMessageByClassName(String className) throws InvocationTargetException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException {
-        Class c;
-
-        try {
-            c = Class.forName(className);
-        } catch (ClassNotFoundException e) {
-            logger.error("Failed to load packet:" + className + " class not found!");
-            throw e;
-        }
-
-        if(!Message.class.isAssignableFrom(c)) {
-            logger.error("Failed to load packet:" + className + " class does extend Message class!");
-        }
-
-        Method m = c.getMethod("getDefaultInstance");
-        Message message = (Message) m.invoke(null);
-
-        return message;
-    }
-
-    public byte[] getServerPacketHeader(Class<? extends Message> clazz) {
-        return ArrayUtils.toPrimitive(serverPackets.get(clazz));
-    }
-
-    private Class getClassByName(String className) throws ClassNotFoundException {
-        return Class.forName(className);
     }
 }

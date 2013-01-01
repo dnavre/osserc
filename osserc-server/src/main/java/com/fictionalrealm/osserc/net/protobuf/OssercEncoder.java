@@ -1,8 +1,8 @@
 package com.fictionalrealm.osserc.net.protobuf;
 
-import com.google.protobuf.Message;
-import com.fictionalrealm.osserc.net.lsnr.ConnectionHandler;
 import com.fictionalrealm.osserc.net.PacketMap;
+import com.fictionalrealm.osserc.net.lsnr.ConnectionHandler;
+import com.google.protobuf.Message;
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.handler.codec.oneone.OneToOneEncoder;
@@ -37,7 +37,7 @@ public class OssercEncoder extends OneToOneEncoder {
     protected Object encode(ChannelHandlerContext ctx, Channel channel, Object msg) throws Exception {
         if (msg instanceof Message) {
             Message mMessage = (Message)msg;
-            byte[] messageTypePrefix = packetMap.getServerPacketHeader(mMessage.getClass());
+            byte[] messageTypePrefix = packetMap.getSendablePacketHeader(mMessage.getClass());
 
             logger.debug("cId:" + (ctx.getAttachment() != null ? ctx.getAttachment() : "N/A") + " SP:"
                     + msg.getClass().getSimpleName() + " " + msg.toString().replace("\n", " ") );

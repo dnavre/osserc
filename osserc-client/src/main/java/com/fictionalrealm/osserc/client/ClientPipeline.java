@@ -1,6 +1,5 @@
 package com.fictionalrealm.osserc.client;
 
-import com.fictionalrealm.osserc.client.net.PacketDispatcher;
 import com.fictionalrealm.osserc.client.net.PacketProcessor;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.channel.*;
