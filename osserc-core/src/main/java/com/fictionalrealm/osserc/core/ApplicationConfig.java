@@ -1,5 +1,6 @@
 package com.fictionalrealm.osserc.core;
 
+import com.fictionalrealm.osserc.config.AbstractOssercConfiguration;
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.ConfigurationConverter;
 import org.apache.commons.configuration.ConfigurationException;
@@ -18,51 +19,14 @@ import java.util.Map;
  * Date: 8/7/12
  * Time: 12:12 PM
  */
-public class ApplicationConfig {
+public class ApplicationConfig extends AbstractOssercConfiguration {
 
-    private final String CONFIG_PATH = "com/fictionalrealm/osserc/resources/";
-    private final Logger logger = LoggerFactory.getLogger(getClass());
-
-    private final CompositeConfiguration config;
-    private final Map<String, String> serverPackets;
-    private final Map<String, String> clientPackets;
+    private static final String DEFAULT_CONFIG = "com/fictionalrealm/osserc/resources/config.defaults.properties";
+    private static final String CUSTOM_CONFIG = "osserc.properties";
+    private static final Logger logger = LoggerFactory.getLogger(ApplicationConfig.class);
 
     public ApplicationConfig() throws ConfigurationException {
-        config = new CompositeConfiguration();
-
-        logger.info("Loading configuration");
-
-        try {
-            PropertiesConfiguration defaults = new PropertiesConfiguration(CONFIG_PATH + "config.defaults.properties");
-            PropertiesConfiguration customization = new PropertiesConfiguration("osserc_config.properties");
-
-            config.addConfiguration(defaults);
-            config.addConfiguration(customization);
-
-            // loading client packet list
-            String[] cFiles = config.getStringArray("packetlist.client");
-            CompositeConfiguration cPackets = loadConfigFiles(cFiles);
-            clientPackets = (Map)Collections.unmodifiableMap(ConfigurationConverter.getMap(cPackets));
-
-            // loading server packet list
-            String[] sFiles = config.getStringArray("packetlist.server");
-            CompositeConfiguration sPackets = loadConfigFiles(sFiles);
-            serverPackets = (Map)Collections.unmodifiableMap(ConfigurationConverter.getMap(sPackets));
-
-        } catch (ConfigurationException e) {
-            logger.debug("Couldn't load config! Quitting...", e);
-            System.exit(1);
-            throw e;
-        }
-    }
-
-    private CompositeConfiguration loadConfigFiles(String[] files) throws ConfigurationException {
-        CompositeConfiguration allConfig = new CompositeConfiguration();
-        for (String f: files) {
-            allConfig.addConfiguration(new PropertiesConfiguration(f));
-        }
-
-        return allConfig;
+        super(DEFAULT_CONFIG, CUSTOM_CONFIG);
     }
 
     public int getListenerPort() {
@@ -85,13 +49,5 @@ public class ApplicationConfig {
         }
 
         return paths;
-    }
-
-    public Map<String, String> getClientPackets() {
-        return clientPackets;
-    }
-
-    public Map<String, String> getServerPackets() {
-        return serverPackets;
     }
 }

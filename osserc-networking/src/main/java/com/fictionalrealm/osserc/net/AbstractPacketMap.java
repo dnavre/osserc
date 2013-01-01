@@ -19,7 +19,7 @@ import java.util.concurrent.ConcurrentMap;
  * Date: 12/28/12
  * Time: 1:55 AM
  */
-public class AbstractPacketMap {
+public abstract class AbstractPacketMap {
 
     private final Logger logger = LoggerFactory.getLogger(AbstractPacketMap.class);
 

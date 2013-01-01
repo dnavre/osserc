@@ -21,11 +21,29 @@
             <version>${protobuf.version}</version>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>com.dyuproject.protostuff</groupId>-->
-            <!--<artifactId>protostuff-runtime</artifactId>-->
-            <!--<version>1.0.7</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>1.8</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-lang</groupId>
+                    <artifactId>commons-lang</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons.lang.version}</version>
+        </dependency>
     </dependencies>
 
 

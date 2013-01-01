@@ -42,6 +42,6 @@ public class OssercClient {
 
 
     public void authenticate(String username, String password) {
-        channel.
+        //channel.
     }
 }
