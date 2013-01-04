@@ -2,6 +2,7 @@ package com.fictionalrealm.osserc.client.net;
 
 import com.fictionalrealm.osserc.client.ClientConfig;
 import com.fictionalrealm.osserc.net.AbstractPacketMap;
+import com.fictionalrealm.osserc.net.PacketMapInitializationException;
 import org.apache.commons.codec.DecoderException;
 
 import java.lang.reflect.InvocationTargetException;
@@ -17,21 +18,7 @@ public class CPacketMap extends AbstractPacketMap {
 
     }
 
-    public void initialize(ClientConfig config) {
-
-        try{
-            super.initialize(config.getClientPackets(), config.getServerPackets());
-        } catch (ClassNotFoundException e) {
-            appManager.stop();
-        } catch (NoSuchMethodException e) {
-            appManager.stop();
-        } catch (IllegalAccessException e) {
-            appManager.stop();
-        } catch (InvocationTargetException e) {
-            appManager.stop();
-        } catch (DecoderException e) {
-            logger.error("An unknown error occurred while loading packet list.");
-            appManager.stop();
-        }
+    public void initialize(ClientConfig config) throws PacketMapInitializationException {
+        super.initialize(config.getClientPackets(), config.getServerPackets());
     }
 }

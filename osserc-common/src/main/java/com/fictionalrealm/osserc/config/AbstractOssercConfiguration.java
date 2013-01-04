@@ -29,7 +29,7 @@ public abstract class AbstractOssercConfiguration {
     private final Map<String, String> serverPackets;
     private final Map<String, String> clientPackets;
 
-    public AbstractOssercConfiguration(String defaultConfig, String ... configCustomizations) throws ConfigurationException {
+    public AbstractOssercConfiguration(String defaultConfig, String ... configCustomizations) throws OssercConfigurationException {
         config = new CompositeConfiguration();
 
         logger.info("Loading configuration");
@@ -50,7 +50,7 @@ public abstract class AbstractOssercConfiguration {
         } catch (ConfigurationException e) {
             logger.debug("Couldn't load config! Quitting...", e);
             System.exit(1);
-            throw e;
+            throw new OssercConfigurationException(e);
         }
     }
 

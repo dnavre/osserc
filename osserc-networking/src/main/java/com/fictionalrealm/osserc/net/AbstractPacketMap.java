@@ -26,14 +26,26 @@ public abstract class AbstractPacketMap {
     private final ConcurrentMap<Integer, Message> receivableMessages = new ConcurrentHashMap<Integer, Message>();
     private final ConcurrentMap<Class<?>, Byte[]> sendableMessages = new ConcurrentHashMap<Class<?>, Byte[]>();
 
-    protected void initialize(Map<String, String> receivable, Map<String, String> sendable) throws DecoderException, ClassNotFoundException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        for (Map.Entry<String, String> e: receivable.entrySet()) {
-            receivableMessages.put(NumberUtils.createInteger(e.getKey()), getMessageByClassName(e.getValue()));
-        }
+    protected void initialize(Map<String, String> receivable, Map<String, String> sendable) throws PacketMapInitializationException {
+        try {
+            for (Map.Entry<String, String> e: receivable.entrySet()) {
+                    receivableMessages.put(NumberUtils.createInteger(e.getKey()), getMessageByClassName(e.getValue()));
+            }
 
-        for (Map.Entry<String, String> e: sendable.entrySet()) {
-            String key = Integer.toHexString(NumberUtils.createInteger(e.getKey()));
-            sendableMessages.put(getClassByName(e.getValue()), ArrayUtils.toObject(Hex.decodeHex(key.toCharArray())));
+            for (Map.Entry<String, String> e: sendable.entrySet()) {
+                String key = Integer.toHexString(NumberUtils.createInteger(e.getKey()));
+                sendableMessages.put(getClassByName(e.getValue()), ArrayUtils.toObject(Hex.decodeHex(key.toCharArray())));
+            }
+        } catch (InvocationTargetException e1) {
+            throw new PacketMapInitializationException(e1);
+        } catch (IllegalAccessException e1) {
+            throw new PacketMapInitializationException(e1);
+        } catch (ClassNotFoundException e1) {
+            throw new PacketMapInitializationException(e1);
+        } catch (NoSuchMethodException e1) {
+            throw new PacketMapInitializationException(e1);
+        } catch (DecoderException e) {
+            throw new PacketMapInitializationException(e);
         }
     }
 

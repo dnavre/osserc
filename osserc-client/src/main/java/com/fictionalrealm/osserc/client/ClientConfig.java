@@ -1,6 +1,7 @@
 package com.fictionalrealm.osserc.client;
 
 import com.fictionalrealm.osserc.config.AbstractOssercConfiguration;
+import com.fictionalrealm.osserc.config.OssercConfigurationException;
 import org.apache.commons.configuration.ConfigurationException;
 
 /**
@@ -10,10 +11,10 @@ import org.apache.commons.configuration.ConfigurationException;
  */
 public class ClientConfig extends AbstractOssercConfiguration {
 
-    private static final String DEFAULT_CONFIG = "com/fictionalrealm/osserc/resources/client_cofig.defaults.properties";
+    private static final String DEFAULT_CONFIG = "com/fictionalrealm/osserc/resources/client_config.defaults.properties";
     private static final String CONFIG_CUSTOMIZATION = "osserc_client.properties";
 
-    public ClientConfig() throws ConfigurationException {
+    public ClientConfig() throws OssercConfigurationException {
         super(DEFAULT_CONFIG, CONFIG_CUSTOMIZATION);
     }
 }

@@ -31,16 +31,8 @@ public class PacketMap extends AbstractPacketMap {
 
         try{
             super.initialize(config.getClientPackets(), config.getServerPackets());
-        } catch (ClassNotFoundException e) {
-            appManager.stop();
-        } catch (NoSuchMethodException e) {
-            appManager.stop();
-        } catch (IllegalAccessException e) {
-            appManager.stop();
-        } catch (InvocationTargetException e) {
-            appManager.stop();
-        } catch (DecoderException e) {
-            logger.error("An unknown error occurred while loading packet list.");
+        } catch (PacketMapInitializationException e) {
+            logger.error("An error occurred while loading packet list.");
             appManager.stop();
         }
     }

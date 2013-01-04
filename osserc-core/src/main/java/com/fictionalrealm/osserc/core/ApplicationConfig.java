@@ -1,6 +1,7 @@
 package com.fictionalrealm.osserc.core;
 
 import com.fictionalrealm.osserc.config.AbstractOssercConfiguration;
+import com.fictionalrealm.osserc.config.OssercConfigurationException;
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.ConfigurationConverter;
 import org.apache.commons.configuration.ConfigurationException;
@@ -25,7 +26,7 @@ public class ApplicationConfig extends AbstractOssercConfiguration {
     private static final String CUSTOM_CONFIG = "osserc.properties";
     private static final Logger logger = LoggerFactory.getLogger(ApplicationConfig.class);
 
-    public ApplicationConfig() throws ConfigurationException {
+    public ApplicationConfig() throws OssercConfigurationException {
         super(DEFAULT_CONFIG, CUSTOM_CONFIG);
     }
 
