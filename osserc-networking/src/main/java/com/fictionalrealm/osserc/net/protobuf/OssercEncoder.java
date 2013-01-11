@@ -35,7 +35,7 @@ public class OssercEncoder extends OneToOneEncoder {
             Message mMessage = (Message)msg;
             byte[] messageTypePrefix = packetMap.getSendablePacketHeader(mMessage.getClass());
 
-            logger.debug("cId:" + (ctx.getAttachment() != null ? ctx.getAttachment() : "N/A") + " SP:"
+            logger.debug("cId:" + (ctx.getAttachment() != null ? ctx.getAttachment() : "N/A") + " Tx:"
                     + msg.getClass().getSimpleName() + " " + msg.toString().replace("\n", " ") );
 
             return wrappedBuffer(messageTypePrefix, mMessage.toByteArray());

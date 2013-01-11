@@ -12,13 +12,13 @@ import java.lang.reflect.InvocationTargetException;
  * Date: 12/28/12
  * Time: 1:46 AM
  */
-public class CPacketMap extends AbstractPacketMap {
+public class ClientPacketMap extends AbstractPacketMap {
 
-    public CPacketMap() {
+    public ClientPacketMap() {
 
     }
 
     public void initialize(ClientConfig config) throws PacketMapInitializationException {
-        super.initialize(config.getClientPackets(), config.getServerPackets());
+        super.initialize(config.getServerPackets(), config.getClientPackets());
     }
 }

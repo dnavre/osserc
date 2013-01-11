@@ -1,53 +1,58 @@
 package com.fictionalrealm.osserc.net.protobuf;
 
+import com.fictionalrealm.osserc.net.AbstractPacketMap;
+import com.google.protobuf.ExtensionRegistry;
+import com.google.protobuf.Message;
+import org.apache.commons.lang.ArrayUtils;
+import org.jboss.netty.buffer.ChannelBuffer;
+import org.jboss.netty.buffer.ChannelBufferInputStream;
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.handler.codec.oneone.OneToOneDecoder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Created with IntelliJ IDEA.
  * User: Yervand.Aghababyan
  * Date: 9/3/12
  * Time: 12:07 AM
- * To change this template use File | Settings | File Templates.
  */
 public class OssercDecoder extends OneToOneDecoder {
-   /* private final MessageLite prototype;
-    private final ExtensionRegistry extensionRegistry;*/
+
+    private static final Logger logger = LoggerFactory.getLogger("com.fictionalrealm.osserc.net.Connection");
+
+    private final AbstractPacketMap packetMap;
 
     /**
      * Creates a new instance.
      */
-    public OssercDecoder(/*PacketMap packetMap*/) {
+    public OssercDecoder(AbstractPacketMap packetMap) {
 //        this(prototype, null);
+        this.packetMap = packetMap;
     }
 
     @Override
-    protected Object decode(
-            ChannelHandlerContext ctx, Channel channel, Object msg) throws Exception {
-       /* if (!(msg instanceof ChannelBuffer)) {
+    protected Object decode(ChannelHandlerContext ctx, Channel channel, Object msg) throws Exception {
+
+        if (!(msg instanceof ChannelBuffer)) {
             return msg;
         }
 
         ChannelBuffer buf = (ChannelBuffer) msg;
+
+        byte [] msgTypeHeader = buf.readBytes(2).array();
+
+        Message m = packetMap.getReceivableMessage(msgTypeHeader);
+        Message result;
         if (buf.hasArray()) {
             final int offset = buf.readerIndex();
-            if(extensionRegistry == null) {
-                return prototype.newBuilderForType().mergeFrom(
-                        buf.array(), buf.arrayOffset() + offset, buf.readableBytes()).build();
-            } else {
-                return prototype.newBuilderForType().mergeFrom(
-                        buf.array(), buf.arrayOffset() + offset, buf.readableBytes(), extensionRegistry).build();
-            }
+            result =  m.newBuilderForType().mergeFrom(buf.array(), buf.arrayOffset() + offset, buf.readableBytes()).build();
         } else {
-            if (extensionRegistry == null) {
-                return prototype.newBuilderForType().mergeFrom(
-                        new ChannelBufferInputStream((ChannelBuffer) msg)).build();
-            } else {
-                return prototype.newBuilderForType().mergeFrom(
-                        new ChannelBufferInputStream((ChannelBuffer) msg), extensionRegistry).build();
-            }
-        }*/
-        return null;
+            result = m.newBuilderForType().mergeFrom(new ChannelBufferInputStream((ChannelBuffer) msg)).build();
+        }
+
+        logger.debug(" Rx:" + result.getClass().getSimpleName() + " " + result.toString().replace("\n", " ") );
+
+        return result;
     }
 }

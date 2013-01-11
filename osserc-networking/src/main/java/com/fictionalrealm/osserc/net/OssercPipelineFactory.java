@@ -1,6 +1,8 @@
 package com.fictionalrealm.osserc.net;
 
+import com.fictionalrealm.osserc.net.protobuf.Osserc16FrameDecoder;
 import com.fictionalrealm.osserc.net.protobuf.Osserc16LengthFieldPrependerPrepender;
+import com.fictionalrealm.osserc.net.protobuf.OssercDecoder;
 import com.fictionalrealm.osserc.net.protobuf.OssercEncoder;
 import org.jboss.netty.channel.ChannelHandler;
 import org.jboss.netty.channel.ChannelPipeline;
@@ -28,8 +30,8 @@ public class OssercPipelineFactory implements ChannelPipelineFactory {
     @Override
     public ChannelPipeline getPipeline() throws Exception {
         ChannelPipeline p = pipeline();
-        p.addLast("frameDecoder", new ProtobufVarint32FrameDecoder());
-        //p.addLast("protobufDecoder", new ProtobufDecoder(LocalTimeProtocol.Locations.getDefaultInstance()));
+        p.addLast("frameDecoder", new Osserc16FrameDecoder());
+        p.addLast("protobufDecoder", new OssercDecoder(packetMap));
 
         p.addLast("frameEncoder", new Osserc16LengthFieldPrependerPrepender());
         p.addLast("protobufEncoder", new OssercEncoder(packetMap));

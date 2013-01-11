@@ -12,7 +12,6 @@ import org.jboss.netty.handler.codec.frame.FrameDecoder;
  * User: Yervand.Aghababyan
  * Date: 9/2/12
  * Time: 10:47 PM
- * To change this template use File | Settings | File Templates.
  */
 public class Osserc16FrameDecoder extends FrameDecoder {
     @Override

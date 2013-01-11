@@ -1,14 +1,15 @@
 package com.fictionalrealm.osserc.client;
 
 import com.fictionalrealm.osserc.client.net.ClientConnection;
+import com.fictionalrealm.osserc.client.net.ClientPacketMap;
+import com.fictionalrealm.osserc.client.net.PacketProcessor;
 import com.fictionalrealm.osserc.config.OssercConfigurationException;
+import com.fictionalrealm.osserc.net.ChannelHandlerFactory;
+import com.fictionalrealm.osserc.net.OssercPipelineFactory;
 import com.fictionalrealm.osserc.net.PacketMapInitializationException;
 import com.fictionalrealm.osserc.protocol.cp.InitUser;
 import org.jboss.netty.bootstrap.ClientBootstrap;
-import org.jboss.netty.channel.ChannelFactory;
-import org.jboss.netty.channel.ChannelFuture;
-import org.jboss.netty.channel.ChannelPipelineFactory;
-import org.jboss.netty.channel.Channels;
+import org.jboss.netty.channel.*;
 import org.jboss.netty.channel.socket.nio.NioClientSocketChannelFactory;
 
 import java.net.InetSocketAddress;
@@ -26,6 +27,9 @@ public class OssercClient {
     private final ClientConfig config;
     private final ClientInitializer ci;
 
+    private final PacketProcessor packetProcessor;
+    private final ClientPacketMap packetMap;
+
     private volatile ClientConnection connection = null;
 
     public OssercClient() {
@@ -33,7 +37,14 @@ public class OssercClient {
         ci = new ClientInitializer();
         try {
             config = ci.getClientConfig();
+
+            packetMap = new ClientPacketMap();
+            packetProcessor = new PacketProcessor(packetMap);
+
+            packetMap.initialize(config);
         } catch (OssercConfigurationException e) {
+            throw new OssercClientInitException(e);
+        } catch (PacketMapInitializationException e) {
             throw new OssercClientInitException(e);
         }
     }
@@ -46,16 +57,12 @@ public class OssercClient {
 
         ClientBootstrap bootstrap = new ClientBootstrap(factory);
 
-        bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
-            public org.jboss.netty.channel.ChannelPipeline getPipeline() throws PacketMapInitializationException {
-                try {
-                    return Channels.pipeline(ci.getPipeline(config));
-                } catch (PacketMapInitializationException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                    throw e;
-                }
+        bootstrap.setPipelineFactory(new OssercPipelineFactory(packetMap, new ChannelHandlerFactory() {
+            @Override
+            public ChannelHandler getNewHandler() {
+                return new ClientMsgHandler(packetProcessor);
             }
-        });
+        }));
 
         bootstrap.setOption("tcpNoDelay", true);
         bootstrap.setOption("keepAlive", true);

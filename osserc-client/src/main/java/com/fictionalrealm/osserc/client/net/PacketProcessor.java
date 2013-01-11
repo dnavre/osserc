@@ -9,9 +9,9 @@ import com.google.protobuf.Message;
  */
 public class PacketProcessor {
 
-    private final CPacketMap packetMap;
+    private final ClientPacketMap packetMap;
 
-    public PacketProcessor(CPacketMap packetMap) {
+    public PacketProcessor(ClientPacketMap packetMap) {
         this.packetMap = packetMap;
     }
 

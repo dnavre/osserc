@@ -8,8 +8,10 @@ import org.apache.commons.lang.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.xml.bind.DatatypeConverter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.ByteBuffer;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -23,18 +25,17 @@ public abstract class AbstractPacketMap {
 
     private final Logger logger = LoggerFactory.getLogger(AbstractPacketMap.class);
 
-    private final ConcurrentMap<Integer, Message> receivableMessages = new ConcurrentHashMap<Integer, Message>();
-    private final ConcurrentMap<Class<?>, Byte[]> sendableMessages = new ConcurrentHashMap<Class<?>, Byte[]>();
+    private final ConcurrentMap<Short, Message> receivableMessages = new ConcurrentHashMap<Short, Message>();
+    private final ConcurrentMap<Class<?>, Short> sendableMessages = new ConcurrentHashMap<Class<?>, Short>();
 
     protected void initialize(Map<String, String> receivable, Map<String, String> sendable) throws PacketMapInitializationException {
         try {
             for (Map.Entry<String, String> e: receivable.entrySet()) {
-                    receivableMessages.put(NumberUtils.createInteger(e.getKey()), getMessageByClassName(e.getValue()));
+                receivableMessages.put(hexStr2Short(e.getKey()), getMessageByClassName(e.getValue()));
             }
 
             for (Map.Entry<String, String> e: sendable.entrySet()) {
-                String key = Integer.toHexString(NumberUtils.createInteger(e.getKey()));
-                sendableMessages.put(getClassByName(e.getValue()), ArrayUtils.toObject(Hex.decodeHex(key.toCharArray())));
+                sendableMessages.put(getClassByName(e.getValue()), hexStr2Short(e.getKey()));
             }
         } catch (InvocationTargetException e1) {
             throw new PacketMapInitializationException(e1);
@@ -44,9 +45,14 @@ public abstract class AbstractPacketMap {
             throw new PacketMapInitializationException(e1);
         } catch (NoSuchMethodException e1) {
             throw new PacketMapInitializationException(e1);
-        } catch (DecoderException e) {
-            throw new PacketMapInitializationException(e);
         }
+    }
+
+    private short hexStr2Short(String str) {
+        byte[] type = DatatypeConverter.parseHexBinary(str.replace("0x", ""));
+        ByteBuffer buf =  ByteBuffer.allocate(2).put(type);
+        buf.rewind();
+        return buf.getShort();
     }
 
     private Message getMessageByClassName(String className) throws InvocationTargetException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException {
@@ -70,7 +76,11 @@ public abstract class AbstractPacketMap {
     }
 
     public byte[] getSendablePacketHeader(Class<? extends Message> clazz) {
-        return ArrayUtils.toPrimitive(sendableMessages.get(clazz));
+        return ByteBuffer.allocate(2).putShort(sendableMessages.get(clazz)).array();
+    }
+
+    public Message getReceivableMessage(byte[] type) {
+        return receivableMessages.get(ByteBuffer.wrap(type).getShort());
     }
 
     private Class getClassByName(String className) throws ClassNotFoundException {

@@ -25,9 +25,9 @@ public class ClientMsgHandler extends SimpleChannelHandler {
 
     @Override
     public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) {
-        ChannelBuffer buf = (ChannelBuffer) e.getMessage();
+        /*ChannelBuffer buf = (ChannelBuffer) e.getMessage();
         long currentTimeMillis = buf.readInt() * 1000L;
-        System.out.println(new Date(currentTimeMillis));
+        System.out.println(new Date(currentTimeMillis));*/
     }
 
     @Override
