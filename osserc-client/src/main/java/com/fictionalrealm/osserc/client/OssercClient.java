@@ -1,9 +1,9 @@
 package com.fictionalrealm.osserc.client;
 
-import com.fictionalrealm.osserc.client.net.PacketProcessor;
+import com.fictionalrealm.osserc.client.net.ClientConnection;
 import com.fictionalrealm.osserc.config.OssercConfigurationException;
 import com.fictionalrealm.osserc.net.PacketMapInitializationException;
-import org.apache.commons.configuration.ConfigurationException;
+import com.fictionalrealm.osserc.protocol.cp.InitUser;
 import org.jboss.netty.bootstrap.ClientBootstrap;
 import org.jboss.netty.channel.ChannelFactory;
 import org.jboss.netty.channel.ChannelFuture;
@@ -21,10 +21,12 @@ import java.util.concurrent.Executors;
  */
 public class OssercClient {
 
-    private ChannelFuture channel;
+    private ChannelFuture channelFuture;
 
     private final ClientConfig config;
     private final ClientInitializer ci;
+
+    private volatile ClientConnection connection = null;
 
     public OssercClient() {
 
@@ -58,11 +60,22 @@ public class OssercClient {
         bootstrap.setOption("tcpNoDelay", true);
         bootstrap.setOption("keepAlive", true);
 
-        channel = bootstrap.connect(new InetSocketAddress(host, port));
+        channelFuture = bootstrap.connect(new InetSocketAddress(host, port));
+
+        connection = new ClientConnection(channelFuture.getChannel());
     }
 
 
     public void authenticate(String username, String password) {
-        //channel.
+        InitUser iu = InitUser.newBuilder()
+                .setUsername(username)
+                .setPassword(password)
+                .build();
+
+        connection.write(iu);
+    }
+
+    public ClientConnection getConnection() {
+        return connection;
     }
 }

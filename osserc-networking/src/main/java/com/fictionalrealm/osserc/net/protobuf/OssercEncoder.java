@@ -1,15 +1,12 @@
 package com.fictionalrealm.osserc.net.protobuf;
 
-import com.fictionalrealm.osserc.net.PacketMap;
-import com.fictionalrealm.osserc.net.lsnr.ConnectionHandler;
+import com.fictionalrealm.osserc.net.AbstractPacketMap;
 import com.google.protobuf.Message;
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.handler.codec.oneone.OneToOneEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.inject.Inject;
 
 import static org.jboss.netty.buffer.ChannelBuffers.wrappedBuffer;
 
@@ -20,15 +17,14 @@ import static org.jboss.netty.buffer.ChannelBuffers.wrappedBuffer;
  */
 public class OssercEncoder extends OneToOneEncoder {
 
-    private final Logger logger = LoggerFactory.getLogger(ConnectionHandler.class);
+    private final Logger logger = LoggerFactory.getLogger("com.fictionalrealm.osserc.net.Connection");
 
-    private final PacketMap packetMap;
+    private final AbstractPacketMap packetMap;
 
     /**
      * Creates a new instance.
      */
-    @Inject
-    public OssercEncoder(PacketMap packetMap) {
+    public OssercEncoder(AbstractPacketMap packetMap) {
         super();
         this.packetMap = packetMap;
     }

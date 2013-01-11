@@ -1,13 +1,12 @@
-package com.fictionalrealm.osserc.net.lsnr;
+package com.fictionalrealm.osserc.net;
 
 import com.fictionalrealm.osserc.net.protobuf.Osserc16LengthFieldPrependerPrepender;
 import com.fictionalrealm.osserc.net.protobuf.OssercEncoder;
-import com.google.inject.Injector;
+import org.jboss.netty.channel.ChannelHandler;
 import org.jboss.netty.channel.ChannelPipeline;
 import org.jboss.netty.channel.ChannelPipelineFactory;
+import org.jboss.netty.channel.SimpleChannelHandler;
 import org.jboss.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
-
-import javax.inject.Inject;
 
 import static org.jboss.netty.channel.Channels.pipeline;
 
@@ -18,13 +17,12 @@ import static org.jboss.netty.channel.Channels.pipeline;
  */
 public class OssercPipelineFactory implements ChannelPipelineFactory {
 
-    private final ConnectionHandler connectionHandler;
-    private final Injector injector;
+    private final ChannelHandlerFactory handlerFactory;
+    private final AbstractPacketMap packetMap;
 
-    @Inject
-    public OssercPipelineFactory(ConnectionHandler connectionHandler, Injector injector) {
-        this.connectionHandler = connectionHandler;
-        this.injector = injector;
+    public OssercPipelineFactory(AbstractPacketMap packetMap, ChannelHandlerFactory handlerFactory) {
+        this.handlerFactory = handlerFactory;
+        this.packetMap = packetMap;
     }
 
     @Override
@@ -33,10 +31,10 @@ public class OssercPipelineFactory implements ChannelPipelineFactory {
         p.addLast("frameDecoder", new ProtobufVarint32FrameDecoder());
         //p.addLast("protobufDecoder", new ProtobufDecoder(LocalTimeProtocol.Locations.getDefaultInstance()));
 
-        p.addLast("frameEncoder", injector.getInstance(Osserc16LengthFieldPrependerPrepender.class));
-        p.addLast("protobufEncoder", injector.getInstance(OssercEncoder.class));
+        p.addLast("frameEncoder", new Osserc16LengthFieldPrependerPrepender());
+        p.addLast("protobufEncoder", new OssercEncoder(packetMap));
 
-        p.addLast("handler", connectionHandler);
+        p.addLast("handler", handlerFactory.getNewHandler());
         return p;
     }
 }

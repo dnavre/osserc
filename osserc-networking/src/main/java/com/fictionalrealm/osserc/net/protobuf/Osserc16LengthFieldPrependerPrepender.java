@@ -1,6 +1,6 @@
 package com.fictionalrealm.osserc.net.protobuf;
 
-import com.fictionalrealm.osserc.net.PacketMap;
+import com.fictionalrealm.osserc.net.AbstractPacketMap;
 import com.google.protobuf.CodedOutputStream;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBufferOutputStream;
@@ -8,7 +8,6 @@ import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.handler.codec.oneone.OneToOneEncoder;
 
-import javax.inject.Inject;
 
 import static org.jboss.netty.buffer.ChannelBuffers.wrappedBuffer;
 
@@ -18,8 +17,8 @@ import static org.jboss.netty.buffer.ChannelBuffers.wrappedBuffer;
  * Time: 2:11 PM
  */
 public class Osserc16LengthFieldPrependerPrepender extends OneToOneEncoder {
-    @Inject
-    public Osserc16LengthFieldPrependerPrepender(PacketMap packetMap) {
+
+    public Osserc16LengthFieldPrependerPrepender() {
 
     }
 

@@ -17,6 +17,7 @@ public class ConnectionInitTest {
         OssercClient c = new OssercClient();
 
         c.connect("localhost", 8039);
+        c.authenticate("sadasda", "ada");
 
         try {
             Thread.sleep(5000);

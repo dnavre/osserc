@@ -12,27 +12,14 @@ import org.jboss.netty.channel.ChannelHandlerContext;
  * Date: 8/9/12
  * Time: 2:22 AM
  */
-public class Connection {
+public class Connection extends AbstractConnection {
 
-    private final ChannelHandlerContext ctx;
-    private final long id;
+    protected final long id;
 
     public Connection(long connectionId, ChannelHandlerContext ctx) {
+        super(ctx.getChannel());
+
         this.id = connectionId;
-        this.ctx = ctx;
-    }
-
-    public void write(Message m) {
-        if(ctx.getChannel().isWritable())
-        ctx.getChannel().write(m);
-    }
-
-    public boolean isConnected() {
-        return false;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public void disconnectConnection(DisconnectionReason reason) {
@@ -49,7 +36,7 @@ public class Connection {
 
             write(noticeSP);
 
-            ctx.getChannel().close();
+            channel.close();
         }
     }
 
@@ -60,5 +47,9 @@ public class Connection {
                 .build();
 
         write(welcomeSP);
+    }
+
+    public long getId() {
+        return id;
     }
 }

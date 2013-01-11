@@ -11,9 +11,9 @@ import java.util.Date;
  * Date: 12/27/12
  * Time: 2:47 AM
  */
-public class ClientPipeline extends SimpleChannelHandler {
+public class ClientMsgHandler extends SimpleChannelHandler {
 
-    public ClientPipeline(PacketProcessor packetDispatcher) {
+    public ClientMsgHandler(PacketProcessor packetDispatcher) {
         //To change body of created methods use File | Settings | File Templates.
     }
 
@@ -28,7 +28,6 @@ public class ClientPipeline extends SimpleChannelHandler {
         ChannelBuffer buf = (ChannelBuffer) e.getMessage();
         long currentTimeMillis = buf.readInt() * 1000L;
         System.out.println(new Date(currentTimeMillis));
-        e.getChannel().close();
     }
 
     @Override

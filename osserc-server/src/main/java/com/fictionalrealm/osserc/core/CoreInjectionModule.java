@@ -1,17 +1,21 @@
 package com.fictionalrealm.osserc.core;
 
+import com.fictionalrealm.osserc.net.AbstractPacketMap;
+import com.fictionalrealm.osserc.net.PacketMap;
 import com.google.inject.AbstractModule;
+import com.google.inject.Provider;
+import com.google.inject.Scopes;
+
 
 /**
- * Created with IntelliJ IDEA.
  * User: Yervand.Aghababyan
  * Date: 8/3/12
  * Time: 3:05 AM
- * To change this template use File | Settings | File Templates.
  */
 public class CoreInjectionModule extends AbstractModule {
     @Override
     protected void configure() {
-        //To change body of implemented methods use File | Settings | File Templates.
+
+        bind(AbstractPacketMap.class).to(PacketMap.class).in(Scopes.SINGLETON);
     }
 }

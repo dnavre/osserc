@@ -2,6 +2,7 @@ package com.fictionalrealm.osserc.core;
 
 import com.fictionalrealm.osserc.net.PacketMap;
 import com.fictionalrealm.osserc.net.lsnr.Listener;
+import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import org.jboss.netty.channel.ChannelException;
 import org.slf4j.Logger;
@@ -35,11 +36,16 @@ public class Application {
     public void start() {
         try {
             logger.info("Starting...");
+
             packetMap.initialize(config);
 
             listener.bind(config.getListenerHost(), config.getListenerPort());
         } catch (ChannelException e) {
             logger.error("Couldn't listen to port! Quitting...", e.getMessage());
         }
+    }
+
+    private void initGuice() {
+
     }
 }

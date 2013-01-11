@@ -1,6 +1,5 @@
 package com.fictionalrealm.osserc.net.protobuf;
 
-import com.fictionalrealm.osserc.net.PacketMap;
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.handler.codec.oneone.OneToOneDecoder;
@@ -19,7 +18,7 @@ public class OssercDecoder extends OneToOneDecoder {
     /**
      * Creates a new instance.
      */
-    public OssercDecoder(PacketMap packetMap) {
+    public OssercDecoder(/*PacketMap packetMap*/) {
 //        this(prototype, null);
     }
 

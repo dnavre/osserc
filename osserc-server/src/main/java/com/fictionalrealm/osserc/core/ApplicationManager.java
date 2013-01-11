@@ -1,6 +1,7 @@
 package com.fictionalrealm.osserc.core;
 
 import com.fictionalrealm.osserc.net.lsnr.Listener;
+import com.google.inject.Injector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,11 +18,11 @@ public class ApplicationManager {
 
     public final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private final Listener listener;
+    private final Injector injector;
 
     @Inject
-    public ApplicationManager(Listener listener) {
-        this.listener = listener;
+    public ApplicationManager(Injector injector) {
+        this.injector = injector;
     }
 
     /**
@@ -31,6 +32,6 @@ public class ApplicationManager {
 
         logger.info("Stopping Osserc...");
 
-        listener.stop();
+        injector.getInstance(Listener.class).stop();
     }
 }
