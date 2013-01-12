@@ -12,6 +12,8 @@ import javax.xml.bind.DatatypeConverter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -86,4 +88,10 @@ public abstract class AbstractPacketMap {
     private Class getClassByName(String className) throws ClassNotFoundException {
         return Class.forName(className);
     }
+
+    public Collection<Message> getReceivableTypes() {
+        return receivableMessages.values();
+    }
+
+
 }

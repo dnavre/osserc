@@ -1,5 +1,6 @@
 package com.fictionalrealm.osserc.net.protobuf;
 
+import com.fictionalrealm.osserc.net.AbstractConnection;
 import com.fictionalrealm.osserc.net.AbstractPacketMap;
 import com.google.protobuf.Message;
 import org.jboss.netty.channel.Channel;
@@ -17,7 +18,7 @@ import static org.jboss.netty.buffer.ChannelBuffers.wrappedBuffer;
  */
 public class OssercEncoder extends OneToOneEncoder {
 
-    private final Logger logger = LoggerFactory.getLogger("com.fictionalrealm.osserc.net.Connection");
+    private final Logger logger = AbstractConnection.LOGGER;
 
     private final AbstractPacketMap packetMap;
 

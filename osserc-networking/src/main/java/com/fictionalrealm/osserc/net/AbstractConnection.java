@@ -3,6 +3,8 @@ package com.fictionalrealm.osserc.net;
 import com.google.protobuf.Message;
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelHandlerContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * User: dnavre
@@ -10,6 +12,8 @@ import org.jboss.netty.channel.ChannelHandlerContext;
  * Time: 2:22 AM
  */
 public abstract class AbstractConnection {
+
+    public static final Logger LOGGER = LoggerFactory.getLogger("com.fictionalrealm.osserc.net.Connection");
 
     protected final Channel channel;
 

@@ -1,8 +1,11 @@
 package com.fictionalrealm.osserc.client;
 
 import com.fictionalrealm.osserc.client.net.PacketProcessor;
+import com.fictionalrealm.osserc.net.AbstractConnection;
+import com.google.protobuf.Message;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.channel.*;
+import org.slf4j.Logger;
 
 import java.util.Date;
 
@@ -13,8 +16,12 @@ import java.util.Date;
  */
 public class ClientMsgHandler extends SimpleChannelHandler {
 
-    public ClientMsgHandler(PacketProcessor packetDispatcher) {
-        //To change body of created methods use File | Settings | File Templates.
+    private final Logger logger = AbstractConnection.LOGGER;
+
+    private final PacketProcessor packetProcessor;
+
+    public ClientMsgHandler(PacketProcessor packetProcessor) {
+        this.packetProcessor = packetProcessor;
     }
 
     @Override
@@ -25,14 +32,13 @@ public class ClientMsgHandler extends SimpleChannelHandler {
 
     @Override
     public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) {
-        /*ChannelBuffer buf = (ChannelBuffer) e.getMessage();
-        long currentTimeMillis = buf.readInt() * 1000L;
-        System.out.println(new Date(currentTimeMillis));*/
+        Message msg = (Message) e.getMessage();
+        packetProcessor.processPacket(msg);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) {
-        e.getCause().printStackTrace();
+        logger.error("Unknown error occurred", e.getCause());
         e.getChannel().close();
     }
 }

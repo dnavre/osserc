@@ -1,5 +1,6 @@
 package com.fictionalrealm.osserc.net.protobuf;
 
+import com.fictionalrealm.osserc.net.AbstractConnection;
 import com.fictionalrealm.osserc.net.AbstractPacketMap;
 import com.google.protobuf.ExtensionRegistry;
 import com.google.protobuf.Message;
@@ -19,7 +20,7 @@ import org.slf4j.LoggerFactory;
  */
 public class OssercDecoder extends OneToOneDecoder {
 
-    private static final Logger logger = LoggerFactory.getLogger("com.fictionalrealm.osserc.net.Connection");
+    private final Logger logger = AbstractConnection.LOGGER;
 
     private final AbstractPacketMap packetMap;
 
