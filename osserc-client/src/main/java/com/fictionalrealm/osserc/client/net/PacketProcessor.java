@@ -1,7 +1,6 @@
 package com.fictionalrealm.osserc.client.net;
 
-import java.util.List;
-
+import com.fictionalrealm.osserc.client.ClientConfig;
 import com.fictionalrealm.osserc.net.AbstractConnection;
 import com.google.protobuf.Message;
 import org.slf4j.Logger;
@@ -11,6 +10,8 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
+ *
+ * TODO change the blocking strategy in this class
  * User: Yervand.Aghababyan
  * Date: 12/28/12
  * Time: 1:59 AM
@@ -23,8 +24,11 @@ public class PacketProcessor {
 
     private final ConcurrentMap<Class<? extends Message>, CopyOnWriteArrayList<SinglePacketProcessor>> queuedHandlers = new ConcurrentHashMap<Class<? extends Message>, CopyOnWriteArrayList<SinglePacketProcessor>>();
 
-    public PacketProcessor(ClientPacketMap packetMap) {
+    private final long timeout;
+
+    public PacketProcessor(ClientPacketMap packetMap, ClientConfig config) {
         this.packetMap = packetMap;
+        this.timeout = config.getGeneralNetworkTimeout();
 
         for(Message m: packetMap.getReceivableTypes()) {
             queuedHandlers.put(m.getClass(), new CopyOnWriteArrayList<SinglePacketProcessor>());
@@ -48,7 +52,7 @@ public class PacketProcessor {
 
         try {
             synchronized (processor) {
-                processor.wait();
+                processor.wait(timeout);
             }
         } catch (InterruptedException e) {
             logger.error("Unknown error occurred", e);

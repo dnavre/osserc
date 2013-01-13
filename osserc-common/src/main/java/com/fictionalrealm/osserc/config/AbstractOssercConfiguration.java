@@ -88,4 +88,8 @@ public abstract class AbstractOssercConfiguration {
     public Map<String, String> getServerPackets() {
         return serverPackets;
     }
+
+    public long getGeneralNetworkTimeout() {
+        return config.getLong("net.timeout");
+    }
 }
