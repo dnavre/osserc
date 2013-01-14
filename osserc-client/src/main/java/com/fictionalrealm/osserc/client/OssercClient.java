@@ -48,7 +48,7 @@ public class OssercClient {
             packetMap = new ClientPacketMap();
             packetMap.initialize(config);
 
-            packetProcessor = new PacketProcessor(packetMap);
+            packetProcessor = new PacketProcessor(packetMap, config);
 
 
         } catch (OssercConfigurationException e) {
