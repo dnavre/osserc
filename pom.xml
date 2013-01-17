@@ -20,6 +20,7 @@
         <module>osserc-client</module>
         <module>osserc-server</module>
         <module>osserc-networking</module>
+        <module>osserc-client-android</module>
     </modules>
 
 </project>

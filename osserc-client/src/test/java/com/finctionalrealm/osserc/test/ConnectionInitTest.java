@@ -3,6 +3,10 @@ package com.finctionalrealm.osserc.test;
 
 
 import com.fictionalrealm.osserc.client.OssercClient;
+import com.fictionalrealm.osserc.core.OssercServer;
+import com.fictionalrealm.osserc.startup.OssercServerInitializer;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -11,6 +15,19 @@ import org.junit.Test;
  * Time: 1:15 AM
  */
 public class ConnectionInitTest {
+
+    private OssercServer server;
+
+    @Before
+    public void init() {
+        server = OssercServerInitializer.create();
+        server.start();
+    }
+
+    @After
+    public void cleanup() {
+        server.stop();
+    }
 
     @Test
     public void testConnect() {

@@ -11,14 +11,12 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 
 /**
- * Created with IntelliJ IDEA.
  * User: Yervand.Aghababyan
  * Date: 8/3/12
  * Time: 3:07 AM
- * To change this template use File | Settings | File Templates.
  */
 @Singleton
-public class Application {
+public class OssercServer {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -27,7 +25,7 @@ public class Application {
     private final PacketMap packetMap;
 
     @Inject
-    public Application(Listener lsnr, ApplicationConfig config, PacketMap packetMap) {
+    public OssercServer(Listener lsnr, ApplicationConfig config, PacketMap packetMap) {
         this.listener = lsnr;
         this.config = config;
         this.packetMap = packetMap;
@@ -47,5 +45,9 @@ public class Application {
 
     private void initGuice() {
 
+    }
+
+    public void stop() {
+        listener.stop();
     }
 }

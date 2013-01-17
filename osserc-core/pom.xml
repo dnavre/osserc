@@ -19,7 +19,7 @@
         <!--<proto.files></proto.files>-->
     </properties>
 
-    <build>
+    <!--<build>
         <plugins>
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
@@ -38,7 +38,7 @@
                                 <pathconvert pathsep=" " property="proto.files" refid="proto.path" />
                                 <echo>Compiling protobuf packets to ${protobuf.generated}</echo>
                                 <exec executable="Y:/tools/protoc.exe" failonerror="true" >
-                                    <arg value="--java_out=${protobuf.generated}"/>
+                                    <arg value="-//-java_out=${protobuf.generated}"/>
                                     <arg value="-I${project.basedir}/src/main/proto"/>
                                     <arg line="${proto.files}"/>
                                 </exec>
@@ -51,7 +51,7 @@
                 </executions>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
 
     <dependencies>
 
