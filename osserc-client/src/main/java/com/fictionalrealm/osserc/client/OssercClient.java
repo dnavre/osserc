@@ -1,5 +1,8 @@
 package com.fictionalrealm.osserc.client;
 
+import com.fictionalrealm.osserc.client.config.ClientConfig;
+import com.fictionalrealm.osserc.client.config.ClientConfigFactory;
+import com.fictionalrealm.osserc.client.config.OssercConfigurationInitException;
 import com.fictionalrealm.osserc.client.net.ClientConnection;
 import com.fictionalrealm.osserc.client.net.ClientPacketMap;
 import com.fictionalrealm.osserc.client.net.PacketProcessor;
@@ -10,7 +13,6 @@ import com.fictionalrealm.osserc.net.OssercPipelineFactory;
 import com.fictionalrealm.osserc.net.PacketMapInitializationException;
 import com.fictionalrealm.osserc.protocol.cp.InitUser;
 import com.fictionalrealm.osserc.protocol.sp.WelcomeSP;
-import com.google.protobuf.Message;
 import org.jboss.netty.bootstrap.ClientBootstrap;
 import org.jboss.netty.channel.*;
 import org.jboss.netty.channel.socket.nio.NioClientSocketChannelFactory;
@@ -32,7 +34,6 @@ public class OssercClient {
     private ChannelFuture channelFuture;
 
     private final ClientConfig config;
-    private final ClientInitializer ci;
 
     private final PacketProcessor packetProcessor;
     private final ClientPacketMap packetMap;
@@ -41,9 +42,8 @@ public class OssercClient {
 
     public OssercClient() {
 
-        ci = new ClientInitializer();
         try {
-            config = ci.getClientConfig();
+            config = ClientConfigFactory.getConfig();
 
             packetMap = new ClientPacketMap();
             packetMap.initialize(config);
@@ -54,6 +54,8 @@ public class OssercClient {
         } catch (OssercConfigurationException e) {
             throw new OssercClientInitException(e);
         } catch (PacketMapInitializationException e) {
+            throw new OssercClientInitException(e);
+        } catch (OssercConfigurationInitException e) {
             throw new OssercClientInitException(e);
         }
     }

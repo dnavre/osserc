@@ -7,12 +7,20 @@
         <groupId>com.fictionalrealm.osserc</groupId>
         <version>0.1.1-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>osserc-common</artifactId>
+    <description>Common classes shared between the server and client libraries</description>
 
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.fictionalrealm.osserc</groupId>
+            <artifactId>osserc-common-integration</artifactId>
+            <version>0.1.1-SNAPSHOT</version>
+        </dependency>
 
         <!-- Protocol related -->
         <dependency>

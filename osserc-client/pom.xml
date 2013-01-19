@@ -21,6 +21,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.fictionalrealm.osserc</groupId>
+            <artifactId>osserc-client-integration</artifactId>
+            <version>0.1.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.jboss.netty</groupId>
             <artifactId>netty</artifactId>
             <version>3.2.7.Final</version>
@@ -39,6 +45,7 @@
             <version>0.1.1-SNAPSHOT</version>
         </dependency>
 
+        <!-- ========== TEST DEPENDENCIES ========== -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

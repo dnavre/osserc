@@ -36,6 +36,12 @@
             <groupId>com.fictionalrealm.osserc</groupId>
             <artifactId>osserc-client</artifactId>
             <version>0.1.1-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fictionalrealm.osserc</groupId>
+                    <artifactId>osserc-client-configuration</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 

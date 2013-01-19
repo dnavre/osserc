@@ -7,9 +7,7 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,7 +15,7 @@ import java.util.Map;
  * Date: 1/2/13
  * Time: 1:10 AM
  */
-public abstract class AbstractOssercConfiguration {
+public abstract class AbstractOssercConfiguration implements OssercBaseConfiguration {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -81,10 +79,12 @@ public abstract class AbstractOssercConfiguration {
         }
     }
 
+    @Override
     public Map<String, String> getClientPackets() {
         return clientPackets;
     }
 
+    @Override
     public Map<String, String> getServerPackets() {
         return serverPackets;
     }

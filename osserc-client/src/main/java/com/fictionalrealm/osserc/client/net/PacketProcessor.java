@@ -1,6 +1,6 @@
 package com.fictionalrealm.osserc.client.net;
 
-import com.fictionalrealm.osserc.client.ClientConfig;
+import com.fictionalrealm.osserc.client.config.ClientConfig;
 import com.fictionalrealm.osserc.net.AbstractConnection;
 import com.google.protobuf.Message;
 import org.slf4j.Logger;

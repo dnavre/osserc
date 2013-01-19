@@ -1,11 +1,8 @@
 package com.fictionalrealm.osserc.client.net;
 
-import com.fictionalrealm.osserc.client.ClientConfig;
+import com.fictionalrealm.osserc.client.config.ClientConfig;
 import com.fictionalrealm.osserc.net.AbstractPacketMap;
 import com.fictionalrealm.osserc.net.PacketMapInitializationException;
-import org.apache.commons.codec.DecoderException;
-
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * User: Yervand.Aghababyan

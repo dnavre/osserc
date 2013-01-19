@@ -21,6 +21,9 @@
         <module>osserc-server</module>
         <module>osserc-networking</module>
         <module>osserc-client-android</module>
+        <module>osserc-client-configuration</module>
+        <module>osserc-client-integration</module>
+        <module>osserc-common-integration</module>
     </modules>
 
 </project>

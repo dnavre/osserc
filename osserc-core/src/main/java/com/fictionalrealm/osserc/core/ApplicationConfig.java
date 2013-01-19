@@ -2,17 +2,11 @@ package com.fictionalrealm.osserc.core;
 
 import com.fictionalrealm.osserc.config.AbstractOssercConfiguration;
 import com.fictionalrealm.osserc.config.OssercConfigurationException;
-import org.apache.commons.configuration.CompositeConfiguration;
-import org.apache.commons.configuration.ConfigurationConverter;
-import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.PropertiesConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 
 /**
