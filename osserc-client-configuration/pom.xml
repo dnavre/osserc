@@ -15,9 +15,16 @@
     <description>Configuration classes for use in desktop apps</description>
 
     <dependencies>
+
         <dependency>
             <groupId>com.fictionalrealm.osserc</groupId>
             <artifactId>osserc-common</artifactId>
+            <version>0.1.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fictionalrealm.osserc</groupId>
+            <artifactId>osserc-client-integration</artifactId>
             <version>0.1.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

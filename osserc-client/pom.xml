@@ -27,6 +27,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.fictionalrealm.osserc</groupId>
+            <artifactId>osserc-client-configuration</artifactId>
+            <version>0.1.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.jboss.netty</groupId>
             <artifactId>netty</artifactId>
             <version>3.2.7.Final</version>

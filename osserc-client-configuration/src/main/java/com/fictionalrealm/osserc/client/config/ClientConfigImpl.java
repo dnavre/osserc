@@ -8,7 +8,7 @@ import com.fictionalrealm.osserc.config.OssercConfigurationException;
  * Date: 1/2/13
  * Time: 1:04 AM
  */
-public class ClientConfigImpl extends AbstractOssercConfiguration {
+public class ClientConfigImpl extends AbstractOssercConfiguration implements ClientConfig {
 
     private static final String DEFAULT_CONFIG = "com/fictionalrealm/osserc/resources/client_config.defaults.properties";
     private static final String CONFIG_CUSTOMIZATION = "osserc_client.properties";
