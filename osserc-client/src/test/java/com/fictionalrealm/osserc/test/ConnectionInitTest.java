@@ -1,4 +1,4 @@
-package com.finctionalrealm.osserc.test;
+package com.fictionalrealm.osserc.test;
 
 
 

@@ -2,6 +2,7 @@ package com.fictionalrealm.osserc.client.net;
 
 import com.fictionalrealm.osserc.client.config.ClientConfig;
 import com.fictionalrealm.osserc.net.AbstractConnection;
+import com.fictionalrealm.osserc.net.PacketTypeNotSupported;
 import com.google.protobuf.Message;
 import org.slf4j.Logger;
 
@@ -48,6 +49,11 @@ public class PacketProcessor {
     }
 
     public <T extends Message>void  waitForMessage(Class<T> clazz, SinglePacketProcessor processor ) {
+
+        if(queuedHandlers.get(clazz) == null) {
+            throw new PacketTypeNotSupported(clazz);
+        }
+
         queuedHandlers.get(clazz).add(processor);
 
         try {
