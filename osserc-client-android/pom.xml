@@ -22,7 +22,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Export-Package>com.fictionalrealm.osserc.client.*</Export-Package>
+                        <Export-Package>com.fictionalrealm.osserc.*</Export-Package>
                         <Embed-Dependency>*;scope=compile</Embed-Dependency>
                         <Embed-Transitive>true</Embed-Transitive>
                     </instructions>
@@ -43,6 +43,48 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- ========== TEST DEPENDENCIES ========== -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.0.6</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fictionalrealm.osserc</groupId>
+            <artifactId>osserc-server</artifactId>
+            <version>0.1.1-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fictionalrealm.osserc</groupId>
+            <artifactId>osserc-client</artifactId>
+            <version>0.1.1-SNAPSHOT</version>
+            <scope>test</scope>
+            <type>test-jar</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fictionalrealm.osserc</groupId>
+                    <artifactId>osserc-client-configuration</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-configuration</groupId>
+                    <artifactId>commons-configuration</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
     </dependencies>
 
 </project>
