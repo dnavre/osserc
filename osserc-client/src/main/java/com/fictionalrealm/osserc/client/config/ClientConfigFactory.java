@@ -19,15 +19,52 @@ public abstract class ClientConfigFactory {
     public static ClientConfig getConfig() throws OssercConfigurationInitException, OssercConfigurationException {
         ServiceLoader<OssercClientConfigBuilder> sl = ServiceLoader.load(OssercClientConfigBuilder.class);
         Iterator<OssercClientConfigBuilder> iterator = sl.iterator();
+        OssercClientConfigBuilder ccb;
         if(iterator.hasNext()) {
             LOGGER.debug("Configuration provider found, attempting to get configuration instance");
 
-            OssercClientConfigBuilder ccb = iterator.next();
-            ClientConfig cc = ccb.buildConfig();
-
-            return cc;
+            ccb = iterator.next();
         } else {
-            throw new OssercConfigurationInitException("No configuration providers found!");
+            LOGGER.debug("Trying to fallback to 1. Android config 2. Desktop config");
+
+            ccb = getConfigBuilder();
         }
+
+        ClientConfig cc = ccb.buildConfig();
+
+        return cc;
+    }
+
+    private static OssercClientConfigBuilder getConfigBuilder() throws OssercConfigurationInitException {
+        Class<? extends OssercClientConfigBuilder> clazz = null;
+        try {
+            clazz = (Class<? extends OssercClientConfigBuilder>) Class.forName("com.fictionalrealm.osserc.client.config.AndroidClientConfigBuilder");
+        } catch (ClassNotFoundException e) {
+            LOGGER.debug("Android class builder not found");
+        }
+
+        if(clazz == null) {
+            try {
+                clazz = (Class<? extends OssercClientConfigBuilder>) Class.forName("com.fictionalrealm.osserc.client.config.OssercClientConfigBuilderImpl");
+            } catch (ClassNotFoundException e) {
+                LOGGER.debug("Android class builder not found");
+            }
+        }
+
+        if(clazz == null) {
+            throw new OssercConfigurationInitException("No configuration providers found! ");
+        }
+
+        try {
+            OssercClientConfigBuilder instance = clazz.newInstance();
+
+            return instance;
+        } catch (InstantiationException e) {
+            LOGGER.debug("Could not initialize config builder: " + clazz.getName());
+        } catch (IllegalAccessException e) {
+            LOGGER.debug("Could not initialize config builder: " + clazz.getName());
+        }
+
+        throw new OssercConfigurationInitException("No configuration providers found! ");
     }
 }
