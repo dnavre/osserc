@@ -1,6 +1,6 @@
 package com.fictionalrealm.osserc.net.route;
 
-import com.fictionalrealm.osserc.net.Connection;
+import com.fictionalrealm.osserc.net.ConnectionImpl;
 import com.fictionalrealm.osserc.net.PacketListener;
 import com.google.protobuf.GeneratedMessage;
 
@@ -10,10 +10,10 @@ import com.google.protobuf.GeneratedMessage;
  * Time: 10:47 AM
  */
 public class SessionImpl implements PacketListener{
-    private final Connection c;
+    private final ConnectionImpl c;
 
 
-    public SessionImpl(Connection c) {
+    public SessionImpl(ConnectionImpl c) {
         this.c = c;
     }
 

@@ -4,7 +4,6 @@ import com.fictionalrealm.osserc.protocol.datatypes.DisconnectionReason;
 import com.fictionalrealm.osserc.protocol.datatypes.ServerStatus;
 import com.fictionalrealm.osserc.protocol.sp.DisconnectionNoticeSP;
 import com.fictionalrealm.osserc.protocol.sp.WelcomeSP;
-import com.google.protobuf.Message;
 import org.jboss.netty.channel.ChannelHandlerContext;
 
 /**
@@ -12,20 +11,22 @@ import org.jboss.netty.channel.ChannelHandlerContext;
  * Date: 8/9/12
  * Time: 2:22 AM
  */
-public class Connection extends AbstractConnection {
+public class ConnectionImpl extends AbstractConnection implements Connection {
 
     protected final long id;
 
-    public Connection(long connectionId, ChannelHandlerContext ctx) {
+    public ConnectionImpl(long connectionId, ChannelHandlerContext ctx) {
         super(ctx.getChannel());
 
         this.id = connectionId;
     }
 
+    @Override
     public void disconnectConnection(DisconnectionReason reason) {
         disconnectConnection(reason, null);
     }
 
+    @Override
     public void disconnectConnection(DisconnectionReason reason, String msg) {
 
         if(isConnected()) {

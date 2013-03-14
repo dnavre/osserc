@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 /**
@@ -14,10 +15,10 @@ import java.util.*;
  */
 public class AndroidClientConfig implements ClientConfig {
 
-    private static final String CLIENT_DEFAULT_PATH = "com/fictionalrealm/osserc/resources/" +
+    private static final String CLIENT_DEFAULT_PATH = "/com/fictionalrealm/osserc/resources/" +
             "client_config.defaults.properties";
 
-    private static final String CLIENT_CUSTOM_PATH = "osserc_client.properties";
+    private static final String CLIENT_CUSTOM_PATH = "/osserc_client.properties";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AndroidClientConfig.class);
 
@@ -26,7 +27,7 @@ public class AndroidClientConfig implements ClientConfig {
 
     private final Properties config;
 
-    public AndroidClientConfig() throws OssercConfigurationException {
+    public AndroidClientConfig() throws OssercConfigurationException, OssercConfigurationInitException {
 
         try {
             List<String> clientPacketMaps = new ArrayList<String>();
@@ -34,21 +35,29 @@ public class AndroidClientConfig implements ClientConfig {
 
             // Loading client configuration
             config = new Properties();
-            config.load(ClassLoader.getSystemResourceAsStream(CLIENT_DEFAULT_PATH));
+            config.load(getClass().getResourceAsStream(CLIENT_DEFAULT_PATH));
 
             clientPacketMaps.add(config.getProperty("packetlist.client"));
             serverPacketMaps.add(config.getProperty("packetlist.server"));
 
             Properties customConfig = new Properties();
             try {
-                customConfig.load(ClassLoader.getSystemResourceAsStream(CLIENT_CUSTOM_PATH));
+
+                InputStream is = getClass().getResourceAsStream(CLIENT_CUSTOM_PATH);
+
+                if(is == null) {
+                    throw new OssercConfigurationInitException("Missing required configuration file in classpath: "
+                            + CLIENT_CUSTOM_PATH);
+                }
+
+                customConfig.load(is);
 
                 if(customConfig.getProperty("packetlist.client") != null) {
-                    clientPacketMaps.add(customConfig.getProperty("packetlist.client"));
+                    clientPacketMaps.add("/" + customConfig.getProperty("packetlist.client"));
                 }
 
                 if(customConfig.getProperty("packetlist.server") != null) {
-                    serverPacketMaps.add(customConfig.getProperty("packetlist.server"));
+                    serverPacketMaps.add("/" + customConfig.getProperty("packetlist.server"));
                 }
 
             } catch (IOException e1) {
@@ -95,7 +104,13 @@ public class AndroidClientConfig implements ClientConfig {
             try {
                 Properties p = new Properties();
 
-                p.load(ClassLoader.getSystemResourceAsStream(str));
+                InputStream is = ClassLoader.getSystemResourceAsStream(str);
+
+                if(is == null) {
+                    is = getClass().getResourceAsStream(str);
+                }
+
+                p.load(is);
 
                 mainList.putAll(p);
             } catch (IOException e) {

@@ -16,7 +16,7 @@ public class ConnectionMap {
 
     private static final int CONNECTION_MNGR_THREAD_NUM = 3;
 
-    private final ConcurrentMap<Long, Connection> connections = new ConcurrentHashMap<Long, Connection>();
+    private final ConcurrentMap<Long, ConnectionImpl> connections = new ConcurrentHashMap<Long, ConnectionImpl>();
     private final ConnectionIdGenerator idGenerator;
     private final ScheduledExecutorService threadPool = new ScheduledThreadPoolExecutor(CONNECTION_MNGR_THREAD_NUM);
 
@@ -29,7 +29,7 @@ public class ConnectionMap {
         threadPool.schedule(new NewConnectionInitializer(ctx), 0, TimeUnit.MILLISECONDS);
     }
 
-    public void removeFromMap(Connection c) {
+    public void removeFromMap(ConnectionImpl c) {
         removeFromMap(c.getId());
     }
 
@@ -37,7 +37,7 @@ public class ConnectionMap {
         connections.remove(connectionId);
     }
 
-    public Connection getConnection(long id) {
+    public ConnectionImpl getConnection(long id) {
         return connections.get(id);
     }
 
@@ -53,7 +53,7 @@ public class ConnectionMap {
         public void run() {
 
             long id = idGenerator.getNewId();
-            Connection c = new Connection(id, ctx);
+            ConnectionImpl c = new ConnectionImpl(id, ctx);
 
             ctx.setAttachment(id);
             connections.put(id, c);
